@@ -12,18 +12,34 @@ assert ',at=' not in seq_text
 assert 'at =' not in seq_text
 seq_text = seq_text.replace(' at=', 'at:=')
 
-env = xt.load(string=seq_text, format='madx', reverse_lines=['lhcb2'], _rbend_correct_k0=True)
+lhc = xt.load(string=seq_text, format='madx', reverse_lines=['lhcb2'], _rbend_correct_k0=True)
+
+# Patch triplet
+lhc.vars.load(string='''
+kqx.l1             := kqx2a.l1           ;
+ktqx1.l1           := kqx1.l1-kqx2a.l1   ;
+ktqx3.l1           := kqx3.l1-kqx2a.l1   ;
+kqx.r1             := kqx2a.r1           ;
+ktqx1.r1           := kqx1.r1-kqx2a.r1   ;
+ktqx3.r1           := kqx3.r1-kqx2a.r1   ;
+kqx.l5             := kqx2a.l5           ;
+ktqx1.l5           := kqx1.l5-kqx2a.l5   ;
+ktqx3.l5           := kqx3.l5-kqx2a.l5   ;
+kqx.r5             := kqx2a.r5           ;
+ktqx1.r5           := kqx1.r5-kqx2a.r5   ;
+ktqx3.r5           := kqx3.r5-kqx2a.r5   ;
+''', format='madx')
 
 # Rename lines
-env.lines['b1'] = env.lines['lhcb1']
-env.lines['b2'] = env.lines['lhcb2']
-del env.lines['lhcb1']
-del env.lines['lhcb2']
+lhc.lines['b1'] = lhc.lines['lhcb1']
+lhc.lines['b2'] = lhc.lines['lhcb2']
+del lhc.lines['lhcb1']
+del lhc.lines['lhcb2']
 
 # Force k0_from_h to False (k0 are all provided)
-for nn in list(env.elements.keys()):
-    if hasattr(env.elements[nn], 'k0_from_h'):
-        env.elements[nn].k0_from_h = False
+for nn in list(lhc.elements.keys()):
+    if hasattr(lhc.elements[nn], 'k0_from_h'):
+        lhc.elements[nn].k0_from_h = False
 
-env.to_json('lhc.json')
-# lpg.write_py_lattice_file(env, output_fname='lhc_seq.py')
+lhc.to_json('lhc.json')
+# lpg.write_py_lattice_file(lhc, output_fname='lhc_seq.py')
