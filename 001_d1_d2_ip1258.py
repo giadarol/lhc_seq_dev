@@ -1,9 +1,6 @@
 import xtrack as xt
 import numpy as np
 
-# TODO:
-# linear model of the edge
-
 lhc = xt.load('lhc.json')
 lhc.vars.load('opt_150.madx')
 
@@ -465,8 +462,8 @@ for ip_name in ['ip5', 'ip2']:
 
 # Save here
 
-lhc.b1.cycle('ip7')
-lhc.b2.cycle('ip7')
+lhc.b1.cycle('ip6')
+lhc.b2.cycle('ip6')
 
 for line in [lhc.b1, lhc.b2]:
     line.slice_thick_elements(
