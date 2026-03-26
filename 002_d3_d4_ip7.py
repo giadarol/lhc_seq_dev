@@ -10,23 +10,71 @@ lhc.b2.set_particle_ref('proton', energy0=7e12)
 tw1 = lhc.b1.twiss4d()
 tw2 = lhc.b2.twiss4d()
 
-# mbw.d6l7.b1
-# mbw.c6l7.b1
+lhc['sep_d34.lr7'] = 0.209 # To be checked!!!!!
 
-# mbw.b6l7.b1
-# mbw.a6l7.b1
+# lhc['mbw.d6l7.b1'].angle = 0
+# lhc['mbw.c6l7.b1'].angle = 0
+# lhc['mbw.b6l7.b1'].angle = 0
+# lhc['mbw.a6l7.b1'].angle = 0
+lhc['mbw.a6r7.b1'].angle = 0
+lhc['mbw.b6r7.b1'].angle = 0
+lhc['mbw.c6r7.b1'].angle = 0
+lhc['mbw.d6r7.b1'].angle = 0
 
-# mbw.a6r7.b1
-# mbw.b6r7.b1
+lhc['mbw.d6l7.b1'].k0 = -lhc.ref['kd34.lr7']
+lhc['mbw.c6l7.b1'].k0 = -lhc.ref['kd34.lr7']
+lhc['mbw.b6l7.b1'].k0 = lhc.ref['kd34.lr7']
+lhc['mbw.a6l7.b1'].k0 = lhc.ref['kd34.lr7']
+lhc['mbw.a6r7.b1'].k0 = lhc.ref['kd34.lr7']
+lhc['mbw.b6r7.b1'].k0 = lhc.ref['kd34.lr7']
+lhc['mbw.c6r7.b1'].k0 = -lhc.ref['kd34.lr7']
+lhc['mbw.d6r7.b1'].k0 = -lhc.ref['kd34.lr7']
 
-# mbw.c6r7.b1
-# mbw.d6r7.b1
+opt = lhc.b1.match(
+    solve=False,
+    betx=1, bety=1, x=0, init_at='ip7',
+    start='mbw.d6l7.b1', end='mbw.d6r7.b1',
+    vary=[xt.VaryList(['kd34.lr7'], step=1e-5)],
+    targets=xt.TargetSet(x=-(lhc['sep_ir7']/2 - lhc['sep_arc']/2), at=xt.END)
+)
+opt.solve()
+
+tw0 = lhc.b1.twiss(init_at='ip7', betx=1, bety=1,
+                   start='mbw.d6l7.b1', end='mbw.d6r7.b1',
+                   strengths=True)
+name_mangets_right = ['mbw.a6r7.b1', 'mbw.b6r7.b1', 'mbw.c6r7.b1', 'mbw.d6r7.b1']
+
+for nn in name_mangets_right:
+
+    lhc[nn].rbend_compensate_sagitta = False
+    lhc[nn].rbend_model = 'straight-body'
+
+    angle_in = np.arcsin(tw0['px', nn])
+    angle_out = -np.arcsin(tw0['px', nn + '>>1'])
+
+    angle = angle_in + angle_out
+    rbend_angle_diff = angle_out - angle_in
+
+    lhc[nn].angle = angle
+    lhc[nn].rbend_angle_diff = rbend_angle_diff
+
+    lhc[nn].rbend_shift = (lhc[nn]._x0_in - tw0['x', nn] - lhc['sep_ir7']/2
+                           + lhc['sep_d34.lr7']/2)
+
 
 lhc.b1.cycle('ip6')
 lhc.b2.cycle('ip6')
 
-# sep_arc
-# sep_ir7
+for line in [lhc.b1, lhc.b2]:
+    line.slice_thick_elements(
+            slicing_strategies=[
+                # Slicing with thin elements
+                xt.Strategy(slicing=None),
+                xt.Strategy(slicing=xt.Uniform(3, mode='thick'), name='mbx.*'),
+                xt.Strategy(slicing=xt.Uniform(3, mode='thick'), name='mbrc.*'),
+                xt.Strategy(slicing=xt.Uniform(3, mode='thick'), name='mbrd.*'),
+                xt.Strategy(slicing=xt.Uniform(3, mode='thick'), name='mbw.*'),
+        ])
 
 sv_b1 = lhc.b1.survey(element0='ip7', X0=lhc['sep_ir7']/2)
 sv_b2 = lhc.b2.survey(element0='ip7', X0=-lhc['sep_ir7']/2, theta0=np.pi)
@@ -40,4 +88,6 @@ plt.legend()
 plt.xlabel('Z [m]')
 plt.ylabel('X [m]')
 plt.title('Survey of IP7 region')
+plt.xlim(-250, 250)
+plt.ylim(-0.15, 0.15)
 plt.grid()
