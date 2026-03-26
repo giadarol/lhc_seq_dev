@@ -87,10 +87,28 @@ lhc['ad1.r5'] = -orientation * line[d1_name].angle
 lhc['ad1.l5'] = -orientation * line[d1_name].angle
 lhc['ad2.r5'] = orientation * line[d2_name].angle
 lhc['ad2.l5'] = orientation * line[d2_name].angle
+lhc['ad1.r1'] = -orientation * line[d1_name].angle
+lhc['ad1.l1'] = -orientation * line[d1_name].angle
+lhc['ad2.r1'] = orientation * line[d2_name].angle
+lhc['ad2.l1'] = orientation * line[d2_name].angle
+
+lhc['kd1.r5'] = -orientation * line[d1_name].k0
+lhc['kd1.l5'] = -orientation * line[d1_name].k0
+lhc['kd2.r5'] = orientation * line[d2_name].k0
+lhc['kd2.l5'] = orientation * line[d2_name].k0
+lhc['kd1.r1'] = -orientation * line[d1_name].k0
+lhc['kd1.l1'] = -orientation * line[d1_name].k0
+lhc['kd2.r1'] = orientation * line[d2_name].k0
+lhc['kd2.l1'] = orientation * line[d2_name].k0
+
 lhc['sep_mid_d1.r5'] = 2 * line[d1_name].rbend_shift
 lhc['sep_mid_d1.l5'] = 2 * line[d1_name].rbend_shift
+lhc['sep_mid_d1.r1'] = 2 * line[d1_name].rbend_shift
+lhc['sep_mid_d1.l1'] = 2 * line[d1_name].rbend_shift
 lhc['shift_d2.r5'] = line[d2_name].rbend_shift
 lhc['shift_d2.l5'] = line[d2_name].rbend_shift
+lhc['shift_d2.r1'] = line[d2_name].rbend_shift
+lhc['shift_d2.l1'] = line[d2_name].rbend_shift
 
 # Adapt elements
 lhc['mbxf.4r5/b1'].rbend_model = 'straight-body'
@@ -104,6 +122,17 @@ lhc['mbxf.4r5/b1'].edge_exit_angle_fdown = -lhc.ref['ad1.r5']
 lhc['mbxf.4r5/b1'].edge_entry_model = 'linear'
 lhc['mbxf.4r5/b1'].edge_exit_model = 'linear'
 
+lhc['mbxf.4r1/b1'].rbend_model = 'straight-body'
+lhc['mbxf.4r1/b1'].rbend_compensate_sagitta = False
+lhc['mbxf.4r1/b1'].angle = -lhc.ref['ad1.r1']
+lhc['mbxf.4r1/b1'].rbend_angle_diff = -lhc.ref['ad1.r1']
+lhc['mbxf.4r1/b1'].k0 = -lhc.ref['kd1.r1']
+lhc['mbxf.4r1/b1'].rbend_shift = lhc.ref['sep_mid_d1.r1'] / 2
+lhc['mbxf.4r1/b1'].edge_entry_angle_fdown = 0
+lhc['mbxf.4r1/b1'].edge_exit_angle_fdown = -lhc.ref['ad1.r1']
+lhc['mbxf.4r1/b1'].edge_entry_model = 'linear'
+lhc['mbxf.4r1/b1'].edge_exit_model = 'linear'
+
 lhc['mbxf.4l5/b1'].rbend_model = 'straight-body'
 lhc['mbxf.4l5/b1'].rbend_compensate_sagitta = False
 lhc['mbxf.4l5/b1'].angle = lhc.ref['ad1.l5']
@@ -114,6 +143,17 @@ lhc['mbxf.4l5/b1'].edge_entry_angle_fdown = lhc.ref['ad1.l5']
 lhc['mbxf.4l5/b1'].edge_exit_angle_fdown = 0
 lhc['mbxf.4l5/b1'].edge_entry_model = 'linear'
 lhc['mbxf.4l5/b1'].edge_exit_model = 'linear'
+
+lhc['mbxf.4l1/b1'].rbend_model = 'straight-body'
+lhc['mbxf.4l1/b1'].rbend_compensate_sagitta = False
+lhc['mbxf.4l1/b1'].angle = lhc.ref['ad1.l1']
+lhc['mbxf.4l1/b1'].rbend_angle_diff = -lhc.ref['ad1.l1']
+lhc['mbxf.4l1/b1'].k0 = lhc.ref['kd1.l1']
+lhc['mbxf.4l1/b1'].rbend_shift = -lhc.ref['sep_mid_d1.l1'] / 2
+lhc['mbxf.4l1/b1'].edge_entry_angle_fdown = lhc.ref['ad1.l1']
+lhc['mbxf.4l1/b1'].edge_exit_angle_fdown = 0
+lhc['mbxf.4l1/b1'].edge_entry_model = 'linear'
+lhc['mbxf.4l1/b1'].edge_exit_model = 'linear'
 
 lhc['mbxf.4r5/b2'].rbend_model = 'straight-body'
 lhc['mbxf.4r5/b2'].rbend_compensate_sagitta = False
@@ -126,6 +166,17 @@ lhc['mbxf.4r5/b2'].edge_exit_angle_fdown = 0
 lhc['mbxf.4r5/b2'].edge_entry_model = 'linear'
 lhc['mbxf.4r5/b2'].edge_exit_model = 'linear'
 
+lhc['mbxf.4r1/b2'].rbend_model = 'straight-body'
+lhc['mbxf.4r1/b2'].rbend_compensate_sagitta = False
+lhc['mbxf.4r1/b2'].angle = -lhc.ref['ad1.r1']
+lhc['mbxf.4r1/b2'].rbend_angle_diff = lhc.ref['ad1.r1']
+lhc['mbxf.4r1/b2'].k0 = -lhc.ref['kd1.r1']
+lhc['mbxf.4r1/b2'].rbend_shift = lhc.ref['sep_mid_d1.r1'] / 2
+lhc['mbxf.4r1/b2'].edge_entry_angle_fdown = lhc.ref['ad1.r1']
+lhc['mbxf.4r1/b2'].edge_exit_angle_fdown = 0
+lhc['mbxf.4r1/b2'].edge_entry_model = 'linear'
+lhc['mbxf.4r1/b2'].edge_exit_model = 'linear'
+
 lhc['mbxf.4l5/b2'].rbend_model = 'straight-body'
 lhc['mbxf.4l5/b2'].rbend_compensate_sagitta = False
 lhc['mbxf.4l5/b2'].angle = lhc.ref['ad1.l5']
@@ -136,6 +187,15 @@ lhc['mbxf.4l5/b2'].edge_entry_angle_fdown = 0
 lhc['mbxf.4l5/b2'].edge_exit_angle_fdown = lhc.ref['ad1.r5']
 lhc['mbxf.4l5/b2'].edge_entry_model = 'linear'
 lhc['mbxf.4l5/b2'].edge_exit_model = 'linear'
+
+lhc['mbxf.4l1/b2'].rbend_model = 'straight-body'
+lhc['mbxf.4l1/b2'].rbend_compensate_sagitta = False
+lhc['mbxf.4l1/b2'].angle = lhc.ref['ad1.l1']
+lhc['mbxf.4l1/b2'].rbend_angle_diff = lhc.ref['ad1.l1']
+lhc['mbxf.4l1/b2'].k0 = lhc.ref['kd1.l1']
+lhc['mbxf.4l1/b2'].rbend_shift = -lhc.ref['sep_mid_d1.l1'] / 2
+lhc['mbxf.4l1/b2'].edge_entry_angle_fdown = 0
+lhc['mbxf.4l1/b2'].edge_exit_angle_fdown = lhc.ref['ad1.l1']
 
 lhc['mbrd.4r5.b1'].rbend_model = 'straight-body'
 lhc['mbrd.4r5.b1'].rbend_compensate_sagitta = False
