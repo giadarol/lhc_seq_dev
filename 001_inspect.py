@@ -188,22 +188,22 @@ for line in [lhc.b1, lhc.b2]:
 
         ])
 
-sv_b1 = lhc.b1.survey(element0='ip5')
-tw_b1 = lhc.b1.twiss4d(init_at='ip5', betx=0.15, bety=0.15)
-sv_b2 = lhc.b2.survey(element0='ip5', theta0=np.pi)
-tw_b2 = lhc.b2.twiss4d(init_at='ip5')
+sv_b1_ip5 = lhc.b1.survey(element0='ip5')
+tw_b1_ip5 = lhc.b1.twiss4d(init_at='ip5', betx=0.15, bety=0.15)
+sv_b2_ip5 = lhc.b2.survey(element0='ip5', theta0=np.pi)
+tw_b2_ip5 = lhc.b2.twiss4d(init_at='ip5')
 
-trajectory_b1 = sv_b1.p0 + tw_b1.x[:, None] * sv_b1.ex + tw_b1.y[:, None] * sv_b1.ey
-trajectory_b2 = sv_b2.p0 + tw_b2.x[:, None] * sv_b2.ex + tw_b2.y[:, None] * sv_b2.ey
+trajectory_b1_ip5 = sv_b1_ip5.p0 + tw_b1_ip5.x[:, None] * sv_b1_ip5.ex + tw_b1_ip5.y[:, None] * sv_b1_ip5.ey
+trajectory_b2_ip5 = sv_b2_ip5.p0 + tw_b2_ip5.x[:, None] * sv_b2_ip5.ex + tw_b2_ip5.y[:, None] * sv_b2_ip5.ey
 
 import matplotlib.pyplot as plt
 plt.close('all')
 plt.figure(1)
-plt.plot(sv_b1.Z, sv_b1.X, label='X survey B1')
-plt.plot(sv_b2.Z, sv_b2.X, label='X survey B2')
+plt.plot(sv_b1_ip5.Z, sv_b1_ip5.X, label='X survey B1')
+plt.plot(sv_b2_ip5.Z, sv_b2_ip5.X, label='X survey B2')
 
-plt.plot(trajectory_b1[:, 2], trajectory_b1[:, 0], '--', label='X trajectory B1')
-plt.plot(trajectory_b2[:, 2], trajectory_b2[:, 0], '--', label='X trajectory B2')
+plt.plot(trajectory_b1_ip5[:, 2], trajectory_b1_ip5[:, 0], '--', label='X trajectory B1')
+plt.plot(trajectory_b2_ip5[:, 2], trajectory_b2_ip5[:, 0], '--', label='X trajectory B2')
 plt.xlim(-180, 180)
 plt.ylim(-0.15, 0.15)
 plt.xlabel('Z [m]')
