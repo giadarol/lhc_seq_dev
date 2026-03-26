@@ -111,6 +111,28 @@ lhc['mbxf.4l5/b1'].edge_exit_angle_fdown = 0
 lhc['mbxf.4l5/b1'].edge_entry_model = 'linear'
 lhc['mbxf.4l5/b1'].edge_exit_model = 'linear'
 
+lhc['mbxf.4r5/b2'].rbend_model = 'straight-body'
+lhc['mbxf.4r5/b2'].rbend_compensate_sagitta = False
+lhc['mbxf.4r5/b2'].angle = -lhc.ref['ad1.r5']
+lhc['mbxf.4r5/b2'].rbend_angle_diff = lhc.ref['ad1.r5']
+lhc['mbxf.4r5/b2'].k0 = -lhc.ref['kd1.r5']
+lhc['mbxf.4r5/b2'].rbend_shift = lhc.ref['sep_mid_d1.r5'] / 2
+lhc['mbxf.4r5/b2'].edge_entry_angle_fdown = lhc.ref['ad1.r5']
+lhc['mbxf.4r5/b2'].edge_exit_angle_fdown = 0
+lhc['mbxf.4r5/b2'].edge_entry_model = 'linear'
+lhc['mbxf.4r5/b2'].edge_exit_model = 'linear'
+
+lhc['mbxf.4l5/b2'].rbend_model = 'straight-body'
+lhc['mbxf.4l5/b2'].rbend_compensate_sagitta = False
+lhc['mbxf.4l5/b2'].angle = lhc.ref['ad1.r5']
+lhc['mbxf.4l5/b2'].rbend_angle_diff = lhc.ref['ad1.r5']
+lhc['mbxf.4l5/b2'].k0 = lhc.ref['kd1.r5']
+lhc['mbxf.4l5/b2'].rbend_shift = -lhc.ref['sep_mid_d1.r5'] / 2
+lhc['mbxf.4l5/b2'].edge_entry_angle_fdown = 0
+lhc['mbxf.4l5/b2'].edge_exit_angle_fdown = lhc.ref['ad1.r5']
+lhc['mbxf.4l5/b2'].edge_entry_model = 'linear'
+lhc['mbxf.4l5/b2'].edge_exit_model = 'linear'
+
 lhc['mbrd.4r5.b1'].rbend_model = 'straight-body'
 lhc['mbrd.4r5.b1'].rbend_compensate_sagitta = False
 lhc['mbrd.4r5.b1'].angle = lhc.ref['ad2.r5']
@@ -133,28 +155,55 @@ lhc['mbrd.4l5.b1'].edge_exit_angle_fdown = -lhc.ref['ad2.r5']
 lhc['mbrd.4l5.b1'].edge_entry_model = 'linear'
 lhc['mbrd.4l5.b1'].edge_exit_model = 'linear'
 
+lhc['mbrd.4r5.b2'].rbend_model = 'straight-body'
+lhc['mbrd.4r5.b2'].rbend_compensate_sagitta = False
+lhc['mbrd.4r5.b2'].angle = lhc.ref['ad2.r5']
+lhc['mbrd.4r5.b2'].rbend_angle_diff = lhc.ref['ad2.r5']
+lhc['mbrd.4r5.b2'].k0 = lhc.ref['kd2.r5']
+lhc['mbrd.4r5.b2'].rbend_shift = lhc.ref['shift_d2.r5']
+lhc['mbrd.4r5.b2'].edge_entry_angle_fdown = 0
+lhc['mbrd.4r5.b2'].edge_exit_angle_fdown = lhc.ref['ad2.r5']
+lhc['mbrd.4r5.b2'].edge_entry_model = 'linear'
+lhc['mbrd.4r5.b2'].edge_exit_model = 'linear'
+
+lhc['mbrd.4l5.b2'].rbend_model = 'straight-body'
+lhc['mbrd.4l5.b2'].rbend_compensate_sagitta = False
+lhc['mbrd.4l5.b2'].angle = -lhc.ref['ad2.r5']
+lhc['mbrd.4l5.b2'].rbend_angle_diff = lhc.ref['ad2.r5']
+lhc['mbrd.4l5.b2'].k0 = -lhc.ref['kd2.r5']
+lhc['mbrd.4l5.b2'].rbend_shift = -lhc.ref['shift_d2.r5']
+lhc['mbrd.4l5.b2'].edge_entry_angle_fdown = 0
+lhc['mbrd.4l5.b2'].edge_exit_angle_fdown = -lhc.ref['ad2.r5']
+lhc['mbrd.4l5.b2'].edge_entry_model = 'linear'
+lhc['mbrd.4l5.b2'].edge_exit_model = 'linear'
 
 
+for line in [lhc.b1, lhc.b2]:
+    line.slice_thick_elements(
+            slicing_strategies=[
+                # Slicing with thin elements
+                xt.Strategy(slicing=None),
+                xt.Strategy(slicing=xt.Uniform(3, mode='thick'), name='mbx.*'),
+                xt.Strategy(slicing=xt.Uniform(3, mode='thick'), name='mbrd.*'),
 
-line.slice_thick_elements(
-        slicing_strategies=[
-            # Slicing with thin elements
-            xt.Strategy(slicing=None),
-            xt.Strategy(slicing=xt.Uniform(3, mode='thick'), name='mbx.*'),
-            xt.Strategy(slicing=xt.Uniform(3, mode='thick'), name='mbrd.*'),
+        ])
 
-    ])
+sv_b1 = lhc.b1.survey(element0='ip5')
+tw_b1 = lhc.b1.twiss4d(init_at='ip5', betx=0.15, bety=0.15)
+sv_b2 = lhc.b2.survey(element0='ip5', theta0=np.pi)
+tw_b2 = lhc.b2.twiss4d(init_at='ip5')
 
-sv = line.survey(element0='ip5')
-tw = line.twiss4d(init_at='ip5', betx=0.15, bety=0.15)
-
-trajectory = sv.p0 + tw.x[:, None] * sv.ex + tw.y[:, None] * sv.ey
+trajectory_b1 = sv_b1.p0 + tw_b1.x[:, None] * sv_b1.ex + tw_b1.y[:, None] * sv_b1.ey
+trajectory_b2 = sv_b2.p0 + tw_b2.x[:, None] * sv_b2.ex + tw_b2.y[:, None] * sv_b2.ey
 
 import matplotlib.pyplot as plt
 plt.close('all')
 plt.figure(1)
-plt.plot(sv.Z, sv.X, label='X survey')
-plt.plot(trajectory[:, 2], trajectory[:, 0], '--', label='X trajectory')
+plt.plot(sv_b1.Z, sv_b1.X, label='X survey B1')
+plt.plot(sv_b2.Z, sv_b2.X, label='X survey B2')
+
+plt.plot(trajectory_b1[:, 2], trajectory_b1[:, 0], '--', label='X trajectory B1')
+plt.plot(trajectory_b2[:, 2], trajectory_b2[:, 0], '--', label='X trajectory B2')
 plt.xlim(-180, 180)
 plt.ylim(-0.15, 0.15)
 plt.xlabel('Z [m]')
