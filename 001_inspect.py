@@ -82,12 +82,13 @@ line[d2_name].rbend_angle_diff  = d2_angle_out  - d2_angle_in
 line[d1_name].rbend_shift = line[d1_name]._x0_in - tw0['x', d1_name]
 line[d2_name].rbend_shift = line[d2_name]._x0_out - tw0['x', '_end_point'] + sep_d2_r5 / 2
 
-# Adapt elements
+# Adapt variables
 lhc['ad1.r5'] = -orientation * line[d1_name].angle
 lhc['ad2.r5'] = orientation * line[d2_name].angle
 lhc['sep_mid_d1.r5'] = 2 * line[d1_name].rbend_shift
 lhc['shift_d2.r5'] = line[d2_name].rbend_shift
 
+# Adapt elements
 lhc['mbxf.4r5/b1'].rbend_model = 'straight-body'
 lhc['mbxf.4r5/b1'].rbend_compensate_sagitta = False
 lhc['mbxf.4r5/b1'].angle = -lhc.ref['ad1.r5']
@@ -99,6 +100,17 @@ lhc['mbxf.4r5/b1'].edge_exit_angle_fdown = -lhc.ref['ad1.r5']
 lhc['mbxf.4r5/b1'].edge_entry_model = 'linear'
 lhc['mbxf.4r5/b1'].edge_exit_model = 'linear'
 
+lhc['mbxf.4l5/b1'].rbend_model = 'straight-body'
+lhc['mbxf.4l5/b1'].rbend_compensate_sagitta = False
+lhc['mbxf.4l5/b1'].angle = lhc.ref['ad1.r5']
+lhc['mbxf.4l5/b1'].rbend_angle_diff = -lhc.ref['ad1.r5']
+lhc['mbxf.4l5/b1'].k0 = lhc.ref['kd1.r5']
+lhc['mbxf.4l5/b1'].rbend_shift = -lhc.ref['sep_mid_d1.r5'] / 2
+lhc['mbxf.4l5/b1'].edge_entry_angle_fdown = lhc.ref['ad1.r5']
+lhc['mbxf.4l5/b1'].edge_exit_angle_fdown = 0
+lhc['mbxf.4l5/b1'].edge_entry_model = 'linear'
+lhc['mbxf.4l5/b1'].edge_exit_model = 'linear'
+
 lhc['mbrd.4r5.b1'].rbend_model = 'straight-body'
 lhc['mbrd.4r5.b1'].rbend_compensate_sagitta = False
 lhc['mbrd.4r5.b1'].angle = lhc.ref['ad2.r5']
@@ -109,6 +121,19 @@ lhc['mbrd.4r5.b1'].edge_entry_angle_fdown = lhc.ref['ad2.r5']
 lhc['mbrd.4r5.b1'].edge_exit_angle_fdown = 0
 lhc['mbrd.4r5.b1'].edge_entry_model = 'linear'
 lhc['mbrd.4r5.b1'].edge_exit_model = 'linear'
+
+lhc['mbrd.4l5.b1'].rbend_model = 'straight-body'
+lhc['mbrd.4l5.b1'].rbend_compensate_sagitta = False
+lhc['mbrd.4l5.b1'].angle = -lhc.ref['ad2.r5']
+lhc['mbrd.4l5.b1'].rbend_angle_diff = -lhc.ref['ad2.r5']
+lhc['mbrd.4l5.b1'].k0 = -lhc.ref['kd2.r5']
+lhc['mbrd.4l5.b1'].rbend_shift = -lhc.ref['shift_d2.r5']
+lhc['mbrd.4l5.b1'].edge_entry_angle_fdown = 0
+lhc['mbrd.4l5.b1'].edge_exit_angle_fdown = -lhc.ref['ad2.r5']
+lhc['mbrd.4l5.b1'].edge_entry_model = 'linear'
+lhc['mbrd.4l5.b1'].edge_exit_model = 'linear'
+
+
 
 
 line.slice_thick_elements(
