@@ -120,13 +120,16 @@ line.slice_thick_elements(
 
     ])
 
-sv = line.survey(element0=ip_name)
+sv = line.survey(element0='ip5')
+tw = line.twiss4d(init_at='ip5', betx=0.15, bety=0.15)
 
+trajectory = sv.p0 + tw.x[:, None] * sv.ex + tw.y[:, None] * sv.ey
 
 import matplotlib.pyplot as plt
 plt.close('all')
 plt.figure(1)
-plt.plot(sv.Z, sv.X, label='X')
+plt.plot(sv.Z, sv.X, label='X survey')
+plt.plot(trajectory[:, 2], trajectory[:, 0], '--', label='X trajectory')
 plt.xlim(-180, 180)
 plt.ylim(-0.15, 0.15)
 plt.xlabel('Z [m]')
