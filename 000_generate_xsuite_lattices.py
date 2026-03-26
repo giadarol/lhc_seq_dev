@@ -6,29 +6,37 @@ fpath = './lhc.seq'
 with open(fpath, 'r') as fid:
     seq_text = fid.read()
 
+seq_text = seq_text.lower()
+
 # Recover expressions in at arguments of the sequences
 assert ' at=' in seq_text
 assert ',at=' not in seq_text
 assert 'at =' not in seq_text
 seq_text = seq_text.replace(' at=', 'at:=')
 
-lhc = xt.load(string=seq_text, format='madx', reverse_lines=['lhcb2'], _rbend_correct_k0=True)
+# Rename sequences
+assert 'LHCB1' not in seq_text
+assert 'LHCB2' not in seq_text
+seq_text = seq_text.replace('lhcb1', 'b1')
+seq_text = seq_text.replace('lhcb2', 'b2')
 
-# Rename lines
-lhc.lines['b1'] = lhc.lines['lhcb1']
-lhc.lines['b2'] = lhc.lines['lhcb2']
-del lhc.lines['lhcb1']
-del lhc.lines['lhcb2']
+lhc = xt.load(string=seq_text, format='madx', reverse_lines=['b2'], _rbend_correct_k0=True)
 
-# Rename elements
-for bname in ['b1', 'b2']:
-    tt = lhc[bname].get_table()
-    tt_to_rename = tt.rows['.*/lhc'+bname]
-    for nn in tt_to_rename.name:
-        new_name = nn.replace('/lhc'+bname, '/'+bname)
-        lhc.new(new_name, nn)
-        lhc[bname].replace(nn, new_name)
-        del lhc.elements[nn]
+# # Rename lines
+# lhc.lines['b1'] = lhc.lines['lhcb1']
+# lhc.lines['b2'] = lhc.lines['lhcb2']
+# del lhc.lines['lhcb1']
+# del lhc.lines['lhcb2']
+
+# # Rename elements
+# for bname in ['b1', 'b2']:
+#     tt = lhc[bname].get_table()
+#     tt_to_rename = tt.rows['.*/lhc'+bname]
+#     for nn in tt_to_rename.name:
+#         new_name = nn.replace('/lhc'+bname, '/'+bname)
+#         lhc.new(new_name, nn)
+#         lhc[bname].replace(nn, new_name)
+#         del lhc.elements[nn]
 
 # Force k0_from_h to False (k0 are all provided)
 for nn in list(lhc.elements.keys()):
