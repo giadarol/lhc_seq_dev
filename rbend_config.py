@@ -376,3 +376,60 @@ def config_rbend_ir3(lhc):
         lhc['mbw.'+mm+'6l3.b2'].rbend_angle_diff = -lhc.ref['adiff.bw.'+mm+'6l3']
         lhc['mbw.'+mm+'6l3.b2'].k0 = pol * lhc.ref['kd34.lr3']
         lhc['mbw.'+mm+'6l3.b2'].rbend_shift = lhc.ref['shift.bw.'+mm+'6l3']
+
+def config_rbend_ir4(lhc):
+    lhc['mbrs.5r4.b1'].rbend_model = 'straight-body'
+    lhc['mbrs.5r4.b1'].rbend_compensate_sagitta = False
+    lhc['mbrs.5r4.b1'].angle = -lhc['ad3.r4']
+    lhc['mbrs.5r4.b1'].rbend_angle_diff = -lhc['ad3.r4']
+    lhc['mbrs.5r4.b1'].k0 = -lhc.ref['kd3.r4']
+    lhc['mbrs.5r4.b1'].rbend_shift = lhc['shift.mbrs.r4']
+
+    lhc['mbrs.5r4.b2'].rbend_model = 'straight-body'
+    lhc['mbrs.5r4.b2'].rbend_compensate_sagitta = False
+    lhc['mbrs.5r4.b2'].angle = -lhc['ad3.r4']
+    lhc['mbrs.5r4.b2'].rbend_angle_diff = lhc['ad3.r4']
+    lhc['mbrs.5r4.b2'].k0 = -lhc.ref['kd3.r4']
+    lhc['mbrs.5r4.b2'].rbend_shift = lhc['shift.mbrs.r4']
+
+    lhc['mbrb.5r4.b1'].rbend_model = 'straight-body'
+    lhc['mbrb.5r4.b1'].rbend_compensate_sagitta = False
+    lhc['mbrb.5r4.b1'].angle = lhc['ad4.r4']
+    lhc['mbrb.5r4.b1'].rbend_angle_diff = -lhc['ad4.r4']
+    lhc['mbrb.5r4.b1'].k0 = lhc.ref['kd4.r4']
+    lhc['mbrb.5r4.b1'].rbend_shift = lhc['shift.mbrb.r4']
+
+    lhc['mbrb.5r4.b2'].rbend_model = 'straight-body'
+    lhc['mbrb.5r4.b2'].rbend_compensate_sagitta = False
+    lhc['mbrb.5r4.b2'].angle = lhc['ad4.r4']
+    lhc['mbrb.5r4.b2'].rbend_angle_diff = lhc['ad4.r4']
+    lhc['mbrb.5r4.b2'].k0 = lhc.ref['kd4.r4']
+    lhc['mbrb.5r4.b2'].rbend_shift = lhc['shift.mbrb.r4']
+
+    lhc['mbrs.5l4.b1'].rbend_model = 'straight-body'
+    lhc['mbrs.5l4.b1'].rbend_compensate_sagitta = False
+    lhc['mbrs.5l4.b1'].angle = -lhc['ad3.l4']
+    lhc['mbrs.5l4.b1'].rbend_angle_diff = lhc['ad3.l4']
+    lhc['mbrs.5l4.b1'].k0 = -lhc.ref['kd3.l4']
+    lhc['mbrs.5l4.b1'].rbend_shift = lhc['shift.mbrs.l4']
+
+    lhc['mbrs.5l4.b2'].rbend_model = 'straight-body'
+    lhc['mbrs.5l4.b2'].rbend_compensate_sagitta = False
+    lhc['mbrs.5l4.b2'].angle = -lhc['ad3.l4']
+    lhc['mbrs.5l4.b2'].rbend_angle_diff = -lhc['ad3.l4']
+    lhc['mbrs.5l4.b2'].k0 = -lhc.ref['kd3.l4']
+    lhc['mbrs.5l4.b2'].rbend_shift = lhc['shift.mbrs.l4']
+
+    lhc['mbrb.5l4.b1'].rbend_model = 'straight-body'
+    lhc['mbrb.5l4.b1'].rbend_compensate_sagitta = False
+    lhc['mbrb.5l4.b1'].angle = lhc['ad4.l4']
+    lhc['mbrb.5l4.b1'].rbend_angle_diff = lhc['ad4.l4']
+    lhc['mbrb.5l4.b1'].k0 = lhc.ref['kd4.l4']
+    lhc['mbrb.5l4.b1'].rbend_shift = lhc['shift.mbrb.l4']
+
+    lhc['mbrb.5l4.b2'].rbend_model = 'straight-body'
+    lhc['mbrb.5l4.b2'].rbend_compensate_sagitta = False
+    lhc['mbrb.5l4.b2'].angle = lhc['ad4.l4']
+    lhc['mbrb.5l4.b2'].rbend_angle_diff = -lhc['ad4.l4']
+    lhc['mbrb.5l4.b2'].k0 = lhc.ref['kd4.l4']
+    lhc['mbrb.5l4.b2'].rbend_shift = lhc['shift.mbrb.l4']

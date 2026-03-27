@@ -3,6 +3,8 @@ import xtrack as xt
 import xtrack as xt
 import numpy as np
 
+from rbend_config import config_rbend_ir4
+
 lhc = xt.load('lhc.json')
 lhc.vars.load('opt_150.madx')
 
@@ -75,93 +77,8 @@ lhc['shift.mbrs.l4'] = lhc['shift.mbrs.r4']
 lhc['shift.mbrb.l4'] = lhc['shift.mbrb.r4']
 
 # Adapt magnets
-lhc['mbrs.5r4.b1'].rbend_model = 'straight-body'
-lhc['mbrs.5r4.b1'].rbend_compensate_sagitta = False
-lhc['mbrs.5r4.b1'].angle = -lhc['ad3.r4']
-lhc['mbrs.5r4.b1'].rbend_angle_diff = -lhc['ad3.r4']
-lhc['mbrs.5r4.b1'].k0 = -lhc.ref['kd3.r4']
-lhc['mbrs.5r4.b1'].rbend_shift = lhc['shift.mbrs.r4']
-lhc['mbrs.5r4.b1'].edge_entry_angle_fdown = 0
-lhc['mbrs.5r4.b1'].edge_exit_angle_fdown = -lhc['ad3.r4']
-lhc['mbrs.5r4.b1'].edge_entry_model = 'linear'
-lhc['mbrs.5r4.b1'].edge_exit_model = 'linear'
+config_rbend_ir4(lhc)
 
-lhc['mbrs.5r4.b2'].rbend_model = 'straight-body'
-lhc['mbrs.5r4.b2'].rbend_compensate_sagitta = False
-lhc['mbrs.5r4.b2'].angle = -lhc['ad3.r4']
-lhc['mbrs.5r4.b2'].rbend_angle_diff = lhc['ad3.r4']
-lhc['mbrs.5r4.b2'].k0 = -lhc.ref['kd3.r4']
-lhc['mbrs.5r4.b2'].rbend_shift = lhc['shift.mbrs.r4']
-lhc['mbrs.5r4.b2'].edge_entry_angle_fdown = 0
-lhc['mbrs.5r4.b2'].edge_exit_angle_fdown = -lhc['ad3.r4']
-lhc['mbrs.5r4.b2'].edge_entry_model = 'linear'
-lhc['mbrs.5r4.b2'].edge_exit_model = 'linear'
-
-lhc['mbrb.5r4.b1'].rbend_model = 'straight-body'
-lhc['mbrb.5r4.b1'].rbend_compensate_sagitta = False
-lhc['mbrb.5r4.b1'].angle = lhc['ad4.r4']
-lhc['mbrb.5r4.b1'].rbend_angle_diff = -lhc['ad4.r4']
-lhc['mbrb.5r4.b1'].k0 = lhc.ref['kd4.r4']
-lhc['mbrb.5r4.b1'].rbend_shift = lhc['shift.mbrb.r4']
-lhc['mbrb.5r4.b1'].edge_entry_angle_fdown = lhc['ad4.r4']
-lhc['mbrb.5r4.b1'].edge_exit_angle_fdown = 0
-lhc['mbrb.5r4.b1'].edge_entry_model = 'linear'
-lhc['mbrb.5r4.b1'].edge_exit_model = 'linear'
-
-lhc['mbrb.5r4.b2'].rbend_model = 'straight-body'
-lhc['mbrb.5r4.b2'].rbend_compensate_sagitta = False
-lhc['mbrb.5r4.b2'].angle = lhc['ad4.r4']
-lhc['mbrb.5r4.b2'].rbend_angle_diff = lhc['ad4.r4']
-lhc['mbrb.5r4.b2'].k0 = lhc.ref['kd4.r4']
-lhc['mbrb.5r4.b2'].rbend_shift = lhc['shift.mbrb.r4']
-lhc['mbrb.5r4.b2'].edge_entry_angle_fdown = lhc['ad4.r4']
-lhc['mbrb.5r4.b2'].edge_exit_angle_fdown = 0
-lhc['mbrb.5r4.b2'].edge_entry_model = 'linear'
-lhc['mbrb.5r4.b2'].edge_exit_model = 'linear'
-
-lhc['mbrs.5l4.b1'].rbend_model = 'straight-body'
-lhc['mbrs.5l4.b1'].rbend_compensate_sagitta = False
-lhc['mbrs.5l4.b1'].angle = -lhc['ad3.l4']
-lhc['mbrs.5l4.b1'].rbend_angle_diff = lhc['ad3.l4']
-lhc['mbrs.5l4.b1'].k0 = -lhc.ref['kd3.l4']
-lhc['mbrs.5l4.b1'].rbend_shift = lhc['shift.mbrs.l4']
-lhc['mbrs.5l4.b1'].edge_entry_angle_fdown = 0
-lhc['mbrs.5l4.b1'].edge_exit_angle_fdown = -lhc['ad3.l4']
-lhc['mbrs.5l4.b1'].edge_entry_model = 'linear'
-lhc['mbrs.5l4.b1'].edge_exit_model = 'linear'
-
-lhc['mbrs.5l4.b2'].rbend_model = 'straight-body'
-lhc['mbrs.5l4.b2'].rbend_compensate_sagitta = False
-lhc['mbrs.5l4.b2'].angle = -lhc['ad3.l4']
-lhc['mbrs.5l4.b2'].rbend_angle_diff = -lhc['ad3.l4']
-lhc['mbrs.5l4.b2'].k0 = -lhc.ref['kd3.l4']
-lhc['mbrs.5l4.b2'].rbend_shift = lhc['shift.mbrs.l4']
-lhc['mbrs.5l4.b2'].edge_entry_angle_fdown = 0
-lhc['mbrs.5l4.b2'].edge_exit_angle_fdown = -lhc['ad3.l4']
-lhc['mbrs.5l4.b2'].edge_entry_model = 'linear'
-lhc['mbrs.5l4.b2'].edge_exit_model = 'linear'
-
-lhc['mbrb.5l4.b1'].rbend_model = 'straight-body'
-lhc['mbrb.5l4.b1'].rbend_compensate_sagitta = False
-lhc['mbrb.5l4.b1'].angle = lhc['ad4.l4']
-lhc['mbrb.5l4.b1'].rbend_angle_diff = lhc['ad4.l4']
-lhc['mbrb.5l4.b1'].k0 = lhc.ref['kd4.l4']
-lhc['mbrb.5l4.b1'].rbend_shift = lhc['shift.mbrb.l4']
-lhc['mbrb.5l4.b1'].edge_entry_angle_fdown = lhc['ad4.l4']
-lhc['mbrb.5l4.b1'].edge_exit_angle_fdown = 0
-lhc['mbrb.5l4.b1'].edge_entry_model = 'linear'
-lhc['mbrb.5l4.b1'].edge_exit_model = 'linear'
-
-lhc['mbrb.5l4.b2'].rbend_model = 'straight-body'
-lhc['mbrb.5l4.b2'].rbend_compensate_sagitta = False
-lhc['mbrb.5l4.b2'].angle = lhc['ad4.l4']
-lhc['mbrb.5l4.b2'].rbend_angle_diff = -lhc['ad4.l4']
-lhc['mbrb.5l4.b2'].k0 = lhc.ref['kd4.l4']
-lhc['mbrb.5l4.b2'].rbend_shift = lhc['shift.mbrb.l4']
-lhc['mbrb.5l4.b2'].edge_entry_angle_fdown = lhc['ad4.l4']
-lhc['mbrb.5l4.b2'].edge_exit_angle_fdown = 0
-lhc['mbrb.5l4.b2'].edge_entry_model = 'linear'
-lhc['mbrb.5l4.b2'].edge_exit_model = 'linear'
 
 lhc.b1.cycle('ip6')
 lhc.b2.cycle('ip6')
@@ -202,3 +119,5 @@ plt.title('Survey of IP4 region')
 plt.xlim(-160, 160)
 plt.ylim(-0.23, 0.23)
 plt.grid()
+
+plt.show()
