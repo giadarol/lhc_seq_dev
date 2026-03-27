@@ -119,9 +119,49 @@ lhc['mbrb.5r4.b2'].edge_exit_angle_fdown = 0
 lhc['mbrb.5r4.b2'].edge_entry_model = 'linear'
 lhc['mbrb.5r4.b2'].edge_exit_model = 'linear'
 
+lhc['mbrs.5l4.b1'].rbend_model = 'straight-body'
+lhc['mbrs.5l4.b1'].rbend_compensate_sagitta = False
+lhc['mbrs.5l4.b1'].angle = -lhc['ad3.l4']
+lhc['mbrs.5l4.b1'].rbend_angle_diff = lhc['ad3.l4']
+lhc['mbrs.5l4.b1'].k0 = -lhc.ref['kd3.l4']
+lhc['mbrs.5l4.b1'].rbend_shift = lhc['shift.mbrs.l4']
+lhc['mbrs.5l4.b1'].edge_entry_angle_fdown = 0
+lhc['mbrs.5l4.b1'].edge_exit_angle_fdown = -lhc['ad3.l4']
+lhc['mbrs.5l4.b1'].edge_entry_model = 'linear'
+lhc['mbrs.5l4.b1'].edge_exit_model = 'linear'
 
+lhc['mbrs.5l4.b2'].rbend_model = 'straight-body'
+lhc['mbrs.5l4.b2'].rbend_compensate_sagitta = False
+lhc['mbrs.5l4.b2'].angle = -lhc['ad3.l4']
+lhc['mbrs.5l4.b2'].rbend_angle_diff = -lhc['ad3.l4']
+lhc['mbrs.5l4.b2'].k0 = -lhc.ref['kd3.l4']
+lhc['mbrs.5l4.b2'].rbend_shift = lhc['shift.mbrs.l4']
+lhc['mbrs.5l4.b2'].edge_entry_angle_fdown = 0
+lhc['mbrs.5l4.b2'].edge_exit_angle_fdown = -lhc['ad3.l4']
+lhc['mbrs.5l4.b2'].edge_entry_model = 'linear'
+lhc['mbrs.5l4.b2'].edge_exit_model = 'linear'
 
+lhc['mbrb.5l4.b1'].rbend_model = 'straight-body'
+lhc['mbrb.5l4.b1'].rbend_compensate_sagitta = False
+lhc['mbrb.5l4.b1'].angle = lhc['ad4.l4']
+lhc['mbrb.5l4.b1'].rbend_angle_diff = lhc['ad4.l4']
+lhc['mbrb.5l4.b1'].k0 = lhc.ref['kd4.l4']
+lhc['mbrb.5l4.b1'].rbend_shift = lhc['shift.mbrb.l4']
+lhc['mbrb.5l4.b1'].edge_entry_angle_fdown = lhc['ad4.l4']
+lhc['mbrb.5l4.b1'].edge_exit_angle_fdown = 0
+lhc['mbrb.5l4.b1'].edge_entry_model = 'linear'
+lhc['mbrb.5l4.b1'].edge_exit_model = 'linear'
 
+lhc['mbrb.5l4.b2'].rbend_model = 'straight-body'
+lhc['mbrb.5l4.b2'].rbend_compensate_sagitta = False
+lhc['mbrb.5l4.b2'].angle = lhc['ad4.l4']
+lhc['mbrb.5l4.b2'].rbend_angle_diff = -lhc['ad4.l4']
+lhc['mbrb.5l4.b2'].k0 = lhc.ref['kd4.l4']
+lhc['mbrb.5l4.b2'].rbend_shift = lhc['shift.mbrb.l4']
+lhc['mbrb.5l4.b2'].edge_entry_angle_fdown = lhc['ad4.l4']
+lhc['mbrb.5l4.b2'].edge_exit_angle_fdown = 0
+lhc['mbrb.5l4.b2'].edge_entry_model = 'linear'
+lhc['mbrb.5l4.b2'].edge_exit_model = 'linear'
 
 lhc.b1.cycle('ip6')
 lhc.b2.cycle('ip6')
