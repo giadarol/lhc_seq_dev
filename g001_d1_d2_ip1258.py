@@ -3,7 +3,7 @@ import numpy as np
 
 from rbend_config import config_rbend_ir15, config_rbend_ir28
 
-lhc = xt.load('lhc.json')
+lhc = xt.load('_lhc_raw.json')
 lhc.vars.load('opt_150.madx')
 
 lhc.b1.set_particle_ref('proton', energy0=7e12)

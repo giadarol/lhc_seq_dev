@@ -1,5 +1,5 @@
 import xtrack as xt
-from xtrack._temp.python_lattice_writer import lattice_py_generation as lpg
+import rbend_config as rbc
 
 fpath = './lhc.seq'
 
@@ -22,26 +22,22 @@ seq_text = seq_text.replace('lhcb2', 'b2')
 
 lhc = xt.load(string=seq_text, format='madx', reverse_lines=['b2'], _rbend_correct_k0=True)
 
-# # Rename lines
-# lhc.lines['b1'] = lhc.lines['lhcb1']
-# lhc.lines['b2'] = lhc.lines['lhcb2']
-# del lhc.lines['lhcb1']
-# del lhc.lines['lhcb2']
-
-# # Rename elements
-# for bname in ['b1', 'b2']:
-#     tt = lhc[bname].get_table()
-#     tt_to_rename = tt.rows['.*/lhc'+bname]
-#     for nn in tt_to_rename.name:
-#         new_name = nn.replace('/lhc'+bname, '/'+bname)
-#         lhc.new(new_name, nn)
-#         lhc[bname].replace(nn, new_name)
-#         del lhc.elements[nn]
-
 # Force k0_from_h to False (k0 are all provided)
 for nn in list(lhc.elements.keys()):
     if hasattr(lhc.elements[nn], 'k0_from_h'):
         lhc.elements[nn].k0_from_h = False
 
+lhc.to_json('_lhc_raw.json')
+
+lhc.vars.load('rbend_config_ip1258.madx')
+lhc.vars.load('rbend_config_ip3.madx')
+lhc.vars.load('rbend_config_ip4.madx')
+lhc.vars.load('rbend_config_ip7.madx')
+
+rbc.config_rbend_ir15(lhc)
+rbc.config_rbend_ir28(lhc)
+rbc.config_rbend_ir3(lhc)
+rbc.config_rbend_ir4(lhc)
+rbc.config_rbend_ir7(lhc)
+
 lhc.to_json('lhc.json')
-# lpg.write_py_lattice_file(lhc, output_fname='lhc_seq.py')

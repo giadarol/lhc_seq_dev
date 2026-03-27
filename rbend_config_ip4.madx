@@ -1,0 +1,11 @@
+! IR4 RBend angles
+ad3.l4 = 1.5716058651e-03;
+ad3.r4 = 1.5716058651e-03;
+ad4.l4 = 1.5716046865e-03;
+ad4.r4 = 1.5716046865e-03;
+
+! IR4 RBend shifts
+shift.mbrb.l4 = 1.8564631277e-03;
+shift.mbrb.r4 = 1.8564631277e-03;
+shift.mbrs.l4 = 1.1435410493e-03;
+shift.mbrs.r4 = 1.1435410493e-03;

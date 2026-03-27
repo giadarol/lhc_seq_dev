@@ -1,0 +1,29 @@
+! Angles for RBends in IR7
+abw.a6l7 = 1.8872909041e-04;
+abw.a6r7 = 1.8872909041e-04;
+abw.b6l7 = 1.8872909713e-04;
+abw.b6r7 = 1.8872909713e-04;
+abw.c6l7 = -1.8872909713e-04;
+abw.c6r7 = -1.8872909713e-04;
+abw.d6l7 = -1.8872909041e-04;
+abw.d6r7 = -1.8872909041e-04;
+
+! In-out angle differences for RBends in IR7
+adiff.bw.a6l7 = -1.8872909041e-04;
+adiff.bw.a6r7 = 1.8872909041e-04;
+adiff.bw.b6l7 = -5.6618727795e-04;
+adiff.bw.b6r7 = 5.6618727795e-04;
+adiff.bw.c6l7 = -5.6618727795e-04;
+adiff.bw.c6r7 = 5.6618727795e-04;
+adiff.bw.d6l7 = -1.8872909041e-04;
+adiff.bw.d6r7 = 1.8872909041e-04;
+
+! Shifts for RBends in IR7
+shift.bw.a6l7 = 1.6919790136e-02;
+shift.bw.a6r7 = 1.6919790136e-02;
+shift.bw.b6l7 = 1.5988412068e-02;
+shift.bw.b6r7 = 1.5988412068e-02;
+shift.bw.c6l7 = 2.8794781954e-03;
+shift.bw.c6r7 = 2.8794781954e-03;
+shift.bw.d6l7 = 2.0802104882e-03;
+shift.bw.d6r7 = 2.0802104882e-03;

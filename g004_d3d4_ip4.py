@@ -5,7 +5,7 @@ import numpy as np
 
 from rbend_config import config_rbend_ir4
 
-lhc = xt.load('lhc.json')
+lhc = xt.load('_lhc_raw.json')
 lhc.vars.load('opt_150.madx')
 
 lhc.b1.set_particle_ref('proton', energy0=7e12)
@@ -78,9 +78,9 @@ lhc['shift.mbrb.l4'] = lhc['shift.mbrb.r4']
 
 tt_vars = lhc.vars.get_table()
 
-tt_angles = tt_vars.rows[r'ad\.[34]\.[lr]4']
-tt_shifts = tt_vars.rows[r'shift\.mb[rb]\.[lr]4']
-tt_k0 = tt_vars.rows[r'kd[34]\.r4']
+tt_angles = tt_vars.rows[r'ad[34]\.[lr]4']
+tt_shifts = tt_vars.rows[r'shift\.mbr[sb]\.[lr]4']
+tt_k0 = tt_vars.rows[r'kd[34]\.[lr]4']
 
 out_lines = []
 out_lines.append('! IR4 RBend angles')
@@ -99,11 +99,8 @@ for nn in sorted(tt_k0.name):
 with open('rbend_strengths_ip4.madx', 'w') as fid:
     fid.write('\n'.join(out_lines))
 
-
-
 # Adapt magnets
 config_rbend_ir4(lhc)
-
 
 lhc.b1.cycle('ip6')
 lhc.b2.cycle('ip6')
