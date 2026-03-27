@@ -10,7 +10,7 @@ lhc.b2.set_particle_ref('proton', energy0=7e12)
 tw1 = lhc.b1.twiss4d()
 tw2 = lhc.b2.twiss4d()
 
-lhc['sep_d34.lr7'] = 0.209 # To be checked!!!!!
+lhc['sep_d34.lr7'] = 0.224 # To be checked!!!!!
 
 lhc['mbw.a6r7.b1'].angle = 0
 lhc['mbw.b6r7.b1'].angle = 0
@@ -194,14 +194,22 @@ for line in [lhc.b1, lhc.b2]:
                 xt.Strategy(slicing=xt.Uniform(3, mode='thick'), name='mbw.*'),
         ])
 
-sv_b1 = lhc.b1.survey(element0='ip7', X0=lhc['sep_ir7']/2)
-sv_b2 = lhc.b2.survey(element0='ip7', X0=-lhc['sep_ir7']/2, theta0=np.pi)
+sv_b1_ip7 = lhc.b1.survey(element0='ip7', X0=lhc['sep_ir7']/2)
+sv_b2_ip7 = lhc.b2.survey(element0='ip7', X0=-lhc['sep_ir7']/2, theta0=np.pi)
+
+tw_b1_ip7 = lhc.b1.twiss4d(init_at='ip7', betx=tw1['betx', 'ip7'], bety=tw1['bety', 'ip7'])
+tw_b2_ip7 = lhc.b2.twiss4d(init_at='ip7', betx=tw2['betx', 'ip7'], bety=tw2['bety', 'ip7'])
+
+trajectory_b1_ip7 = sv_b1_ip7.p0 + tw_b1_ip7.x[:, None] * sv_b1_ip7.ex + tw_b1_ip7.y[:, None] * sv_b1_ip7.ey
+trajectory_b2_ip7 = sv_b2_ip7.p0 + tw_b2_ip7.x[:, None] * sv_b2_ip7.ex + tw_b2_ip7.y[:, None] * sv_b2_ip7.ey
 
 import matplotlib.pyplot as plt
 plt.close('all')
 plt.figure(1)
-plt.plot(sv_b1.Z, sv_b1.X, label='b1')
-plt.plot(sv_b2.Z, sv_b2.X, label='b2')
+plt.plot(sv_b1.Z, sv_b1.X, label='Survey b1')
+plt.plot(sv_b2.Z, sv_b2.X, label='Survey b2')
+plt.plot(trajectory_b1_ip7[:, 2], trajectory_b1_ip7[:, 0], label='b1 ip7')
+plt.plot(trajectory_b2_ip7[:, 2], trajectory_b2_ip7[:, 0], label='b2 ip7')
 plt.legend()
 plt.xlabel('Z [m]')
 plt.ylabel('X [m]')
