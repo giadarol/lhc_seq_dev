@@ -38,9 +38,9 @@ opt.solve()
 tw0 = lhc.b1.twiss(init_at='ip7', betx=1, bety=1,
                    start='mbw.d6l7.b1', end='mbw.d6r7.b1',
                    strengths=True)
-name_mangets_right = ['mbw.a6r7.b1', 'mbw.b6r7.b1', 'mbw.c6r7.b1', 'mbw.d6r7.b1']
+name_magnets_right = ['mbw.a6r7.b1', 'mbw.b6r7.b1', 'mbw.c6r7.b1', 'mbw.d6r7.b1']
 
-for nn in name_mangets_right:
+for nn in name_magnets_right:
 
     lhc[nn].rbend_compensate_sagitta = False
     lhc[nn].rbend_model = 'straight-body'
