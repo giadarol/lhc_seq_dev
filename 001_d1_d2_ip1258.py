@@ -146,14 +146,14 @@ for ip_name in ['ip5', 'ip2']:
         lhc['kd2.r2'] = np.abs(line[d2_name].k0)
         lhc['kd2.l2'] = np.abs(line[d2_name].k0)
 
-        lhc['sep_mid_d1.r8'] = 2 * line[d1_name].rbend_shift
-        lhc['sep_mid_d1.l8'] = 2 * line[d1_name].rbend_shift
-        lhc['sep_mid_d1.r2'] = 2 * line[d1_name].rbend_shift
-        lhc['sep_mid_d1.l2'] = 2 * line[d1_name].rbend_shift
-        lhc['shift_d2.r8'] = line[d2_name].rbend_shift
-        lhc['shift_d2.l8'] = line[d2_name].rbend_shift
-        lhc['shift_d2.r2'] = line[d2_name].rbend_shift
-        lhc['shift_d2.l2'] = line[d2_name].rbend_shift
+        lhc['sep_mid_d1.r8'] = 2 * np.abs(line[d1_name].rbend_shift)
+        lhc['sep_mid_d1.l8'] = 2 * np.abs(line[d1_name].rbend_shift)
+        lhc['sep_mid_d1.r2'] = 2 * np.abs(line[d1_name].rbend_shift)
+        lhc['sep_mid_d1.l2'] = 2 * np.abs(line[d1_name].rbend_shift)
+        lhc['shift_d2.r8'] = np.abs(line[d2_name].rbend_shift)
+        lhc['shift_d2.l8'] = np.abs(line[d2_name].rbend_shift)
+        lhc['shift_d2.r2'] = np.abs(line[d2_name].rbend_shift)
+        lhc['shift_d2.l2'] = np.abs(line[d2_name].rbend_shift)
 
         config_rbend_ir28(lhc)
 
