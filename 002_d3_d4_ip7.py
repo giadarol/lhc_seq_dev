@@ -12,10 +12,6 @@ tw2 = lhc.b2.twiss4d()
 
 lhc['sep_d34.lr7'] = 0.209 # To be checked!!!!!
 
-# lhc['mbw.d6l7.b1'].angle = 0
-# lhc['mbw.c6l7.b1'].angle = 0
-# lhc['mbw.b6l7.b1'].angle = 0
-# lhc['mbw.a6l7.b1'].angle = 0
 lhc['mbw.a6r7.b1'].angle = 0
 lhc['mbw.b6r7.b1'].angle = 0
 lhc['mbw.c6r7.b1'].angle = 0
@@ -60,6 +56,128 @@ for nn in name_mangets_right:
 
     lhc[nn].rbend_shift = (lhc[nn]._x0_in - tw0['x', nn] - lhc['sep_ir7']/2
                            + lhc['sep_d34.lr7']/2)
+
+lhc['abw.a6r7'] = lhc['mbw.a6r7.b1'].angle
+lhc['abw.b6r7'] = lhc['mbw.b6r7.b1'].angle
+lhc['abw.c6r7'] = lhc['mbw.c6r7.b1'].angle
+lhc['abw.d6r7'] = lhc['mbw.d6r7.b1'].angle
+
+lhc['adiff.bw.a6r7'] = lhc['mbw.a6r7.b1'].rbend_angle_diff
+lhc['adiff.bw.b6r7'] = lhc['mbw.b6r7.b1'].rbend_angle_diff
+lhc['adiff.bw.c6r7'] = lhc['mbw.c6r7.b1'].rbend_angle_diff
+lhc['adiff.bw.d6r7'] = lhc['mbw.d6r7.b1'].rbend_angle_diff
+
+lhc['shift.bw.a6r7'] = lhc['mbw.a6r7.b1'].rbend_shift
+lhc['shift.bw.b6r7'] = lhc['mbw.b6r7.b1'].rbend_shift
+lhc['shift.bw.c6r7'] = lhc['mbw.c6r7.b1'].rbend_shift
+lhc['shift.bw.d6r7'] = lhc['mbw.d6r7.b1'].rbend_shift
+
+lhc['afd.ipside.bw.a6r7'] = lhc['mbw.a6r7.b1'].edge_entry_angle_fdown
+lhc['afd.ipside.bw.b6r7'] = lhc['mbw.b6r7.b1'].edge_entry_angle_fdown
+lhc['afd.ipside.bw.c6r7'] = lhc['mbw.c6r7.b1'].edge_entry_angle_fdown
+lhc['afd.ipside.bw.d6r7'] = lhc['mbw.d6r7.b1'].edge_entry_angle_fdown
+
+lhc['afd.arcside.bw.a6r7'] = lhc['mbw.a6r7.b1'].edge_exit_angle_fdown
+lhc['afd.arcside.bw.b6r7'] = lhc['mbw.b6r7.b1'].edge_exit_angle_fdown
+lhc['afd.arcside.bw.c6r7'] = lhc['mbw.c6r7.b1'].edge_exit_angle_fdown
+lhc['afd.arcside.bw.d6r7'] = lhc['mbw.d6r7.b1'].edge_exit_angle_fdown
+
+# Adapt magnets
+lhc['mbw.a6r7.b1'].rbend_model = 'straight-body'
+lhc['mbw.a6r7.b1'].rbend_compensate_sagitta = False
+lhc['mbw.a6r7.b1'].angle = lhc.ref['abw.a6r7']
+lhc['mbw.a6r7.b1'].rbend_angle_diff = lhc.ref['adiff.bw.a6r7']
+lhc['mbw.a6r7.b1'].k0 = lhc.ref['kd34.lr7']
+lhc['mbw.a6r7.b1'].rbend_shift = lhc.ref['shift.bw.a6r7']
+lhc['mbw.a6r7.b1'].edge_entry_angle_fdown = lhc.ref['afd.ipside.bw.a6r7']
+lhc['mbw.a6r7.b1'].edge_exit_angle_fdown = lhc.ref['afd.arcside.bw.a6r7']
+lhc['mbw.a6r7.b1'].edge_entry_model = 'linear'
+lhc['mbw.a6r7.b1'].edge_exit_model = 'linear'
+
+lhc['mbw.a6r7.b2'].rbend_model = 'straight-body'
+lhc['mbw.a6r7.b2'].rbend_compensate_sagitta = False
+lhc['mbw.a6r7.b2'].angle = lhc.ref['abw.a6r7']
+lhc['mbw.a6r7.b2'].rbend_angle_diff = -lhc.ref['adiff.bw.a6r7']
+lhc['mbw.a6r7.b2'].k0 = lhc.ref['kd34.lr7']
+lhc['mbw.a6r7.b2'].rbend_shift = lhc.ref['shift.bw.a6r7']
+lhc['mbw.a6r7.b2'].edge_entry_angle_fdown = lhc.ref['afd.arcside.bw.a6r7']
+lhc['mbw.a6r7.b2'].edge_exit_angle_fdown = lhc.ref['afd.ipside.bw.a6r7']
+lhc['mbw.a6r7.b2'].edge_entry_model = 'linear'
+lhc['mbw.a6r7.b2'].edge_exit_model = 'linear'
+
+lhc['mbw.b6r7.b1'].rbend_model = 'straight-body'
+lhc['mbw.b6r7.b1'].rbend_compensate_sagitta = False
+lhc['mbw.b6r7.b1'].angle = lhc.ref['abw.b6r7']
+lhc['mbw.b6r7.b1'].rbend_angle_diff = lhc.ref['adiff.bw.b6r7']
+lhc['mbw.b6r7.b1'].k0 = lhc.ref['kd34.lr7']
+lhc['mbw.b6r7.b1'].rbend_shift = lhc.ref['shift.bw.b6r7']
+lhc['mbw.b6r7.b1'].edge_entry_angle_fdown = lhc.ref['afd.ipside.bw.b6r7']
+lhc['mbw.b6r7.b1'].edge_exit_angle_fdown = lhc.ref['afd.arcside.bw.b6r7']
+lhc['mbw.b6r7.b1'].edge_entry_model = 'linear'
+lhc['mbw.b6r7.b1'].edge_exit_model = 'linear'
+
+lhc['mbw.b6r7.b2'].rbend_model = 'straight-body'
+lhc['mbw.b6r7.b2'].rbend_compensate_sagitta = False
+lhc['mbw.b6r7.b2'].angle = lhc.ref['abw.b6r7']
+lhc['mbw.b6r7.b2'].rbend_angle_diff = -lhc.ref['adiff.bw.b6r7']
+lhc['mbw.b6r7.b2'].k0 = lhc.ref['kd34.lr7']
+lhc['mbw.b6r7.b2'].rbend_shift = lhc.ref['shift.bw.b6r7']
+lhc['mbw.b6r7.b2'].edge_entry_angle_fdown = lhc.ref['afd.arcside.bw.b6r7']
+lhc['mbw.b6r7.b2'].edge_exit_angle_fdown = lhc.ref['afd.ipside.bw.b6r7']
+lhc['mbw.b6r7.b2'].edge_entry_model = 'linear'
+lhc['mbw.b6r7.b2'].edge_exit_model = 'linear'
+
+lhc['mbw.c6r7.b1'].rbend_model = 'straight-body'
+lhc['mbw.c6r7.b1'].rbend_compensate_sagitta = False
+lhc['mbw.c6r7.b1'].angle = lhc.ref['abw.c6r7']
+lhc['mbw.c6r7.b1'].rbend_angle_diff = lhc.ref['adiff.bw.c6r7']
+lhc['mbw.c6r7.b1'].k0 = -lhc.ref['kd34.lr7']
+lhc['mbw.c6r7.b1'].rbend_shift = lhc.ref['shift.bw.c6r7']
+lhc['mbw.c6r7.b1'].edge_entry_angle_fdown = lhc.ref['afd.ipside.bw.c6r7']
+lhc['mbw.c6r7.b1'].edge_exit_angle_fdown = lhc.ref['afd.arcside.bw.c6r7']
+lhc['mbw.c6r7.b1'].edge_entry_model = 'linear'
+lhc['mbw.c6r7.b1'].edge_exit_model = 'linear'
+
+lhc['mbw.c6r7.b2'].rbend_model = 'straight-body'
+lhc['mbw.c6r7.b2'].rbend_compensate_sagitta = False
+lhc['mbw.c6r7.b2'].angle = lhc.ref['abw.c6r7']
+lhc['mbw.c6r7.b2'].rbend_angle_diff = -lhc.ref['adiff.bw.c6r7']
+lhc['mbw.c6r7.b2'].k0 = -lhc.ref['kd34.lr7']
+lhc['mbw.c6r7.b2'].rbend_shift = lhc.ref['shift.bw.c6r7']
+lhc['mbw.c6r7.b2'].edge_entry_angle_fdown = lhc.ref['afd.arcside.bw.c6r7']
+lhc['mbw.c6r7.b2'].edge_exit_angle_fdown = lhc.ref['afd.ipside.bw.c6r7']
+lhc['mbw.c6r7.b2'].edge_entry_model = 'linear'
+lhc['mbw.c6r7.b2'].edge_exit_model = 'linear'
+
+lhc['mbw.d6r7.b1'].rbend_model = 'straight-body'
+lhc['mbw.d6r7.b1'].rbend_compensate_sagitta = False
+lhc['mbw.d6r7.b1'].angle = lhc.ref['abw.d6r7']
+lhc['mbw.d6r7.b1'].rbend_angle_diff = lhc.ref['adiff.bw.d6r7']
+lhc['mbw.d6r7.b1'].k0 = -lhc.ref['kd34.lr7']
+lhc['mbw.d6r7.b1'].rbend_shift = lhc.ref['shift.bw.d6r7']
+lhc['mbw.d6r7.b1'].edge_entry_angle_fdown = lhc.ref['afd.ipside.bw.d6r7']
+lhc['mbw.d6r7.b1'].edge_exit_angle_fdown = lhc.ref['afd.arcside.bw.d6r7']
+lhc['mbw.d6r7.b1'].edge_entry_model = 'linear'
+lhc['mbw.d6r7.b1'].edge_exit_model = 'linear'
+
+lhc['mbw.d6r7.b2'].rbend_model = 'straight-body'
+lhc['mbw.d6r7.b2'].rbend_compensate_sagitta = False
+lhc['mbw.d6r7.b2'].angle = lhc.ref['abw.d6r7']
+lhc['mbw.d6r7.b2'].rbend_angle_diff = -lhc.ref['adiff.bw.d6r7']
+lhc['mbw.d6r7.b2'].k0 = -lhc.ref['kd34.lr7']
+lhc['mbw.d6r7.b2'].rbend_shift = lhc.ref['shift.bw.d6r7']
+lhc['mbw.d6r7.b2'].edge_entry_angle_fdown = lhc.ref['afd.arcside.bw.d6r7']
+lhc['mbw.d6r7.b2'].edge_exit_angle_fdown = lhc.ref['afd.ipside.bw.d6r7']
+lhc['mbw.d6r7.b2'].edge_entry_model = 'linear'
+lhc['mbw.d6r7.b2'].edge_exit_model = 'linear'
+
+
+
+# lhc['mbw.a6r7.b1'].k0 = lhc.ref['kd34.lr7']
+# lhc['mbw.b6r7.b1'].k0 = lhc.ref['kd34.lr7']
+# lhc['mbw.c6r7.b1'].k0 = -lhc.ref['kd34.lr7']
+# lhc['mbw.d6r7.b1'].k0 = -lhc.ref['kd34.lr7']
+
 
 
 lhc.b1.cycle('ip6')
