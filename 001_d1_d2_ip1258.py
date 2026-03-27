@@ -115,8 +115,8 @@ for ip_name in ['ip5', 'ip2']:
         lhc['kd2.r1'] = np.abs(line[d2_name].k0)
         lhc['kd2.l1'] = np.abs(line[d2_name].k0)
 
-        lhc['sep_mid_d1.r5'] = 2 * line[d1_name].rbend_shift
-        lhc['sep_mid_d1.l5'] = 2 * line[d1_name].rbend_shift
+        lhc['sep_mid_d1.r5'] = 2 * np.abs(line[d1_name].rbend_shift)
+        lhc['sep_mid_d1.l5'] = 2 * np.abs(line[d1_name].rbend_shift)
         lhc['sep_mid_d1.r1'] = 2 * line[d1_name].rbend_shift
         lhc['sep_mid_d1.l1'] = 2 * line[d1_name].rbend_shift
         lhc['shift_d2.r5'] = line[d2_name].rbend_shift
