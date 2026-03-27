@@ -342,3 +342,37 @@ def config_rbend_ir7(lhc):
     lhc['mbw.d6l7.b2'].rbend_angle_diff = -lhc.ref['adiff.bw.d6l7']
     lhc['mbw.d6l7.b2'].k0 = -lhc.ref['kd34.lr7']
     lhc['mbw.d6l7.b2'].rbend_shift = -lhc.ref['shift.bw.d6l7']
+
+def config_rbend_ir3(lhc):
+
+    for mm in ['a', 'b', 'c', 'd', 'e', 'f']:
+        pol = -1 if mm in ['a', 'b', 'c'] else 1
+        lhc['mbw.'+mm+'6r3.b1'].rbend_model = 'straight-body'
+        lhc['mbw.'+mm+'6r3.b1'].rbend_compensate_sagitta = False
+        lhc['mbw.'+mm+'6r3.b1'].angle = lhc.ref['abw.'+mm+'6r3']
+        lhc['mbw.'+mm+'6r3.b1'].rbend_angle_diff = lhc.ref['adiff.bw.'+mm+'6r3']
+        lhc['mbw.'+mm+'6r3.b1'].k0 = pol * lhc.ref['kd34.lr3']
+        lhc['mbw.'+mm+'6r3.b1'].rbend_shift = lhc.ref['shift.bw.'+mm+'6r3']
+
+        lhc['mbw.'+mm+'6r3.b2'].rbend_model = 'straight-body'
+        lhc['mbw.'+mm+'6r3.b2'].rbend_compensate_sagitta = False
+        lhc['mbw.'+mm+'6r3.b2'].angle = lhc.ref['abw.'+mm+'6r3']
+        lhc['mbw.'+mm+'6r3.b2'].rbend_angle_diff = -lhc.ref['adiff.bw.'+mm+'6r3']
+        lhc['mbw.'+mm+'6r3.b2'].k0 = pol * lhc.ref['kd34.lr3']
+        lhc['mbw.'+mm+'6r3.b2'].rbend_shift = lhc.ref['shift.bw.'+mm+'6r3']
+
+    for mm in ['a', 'b', 'c', 'd', 'e', 'f']:
+        pol = -1 if mm in ['a', 'b', 'c'] else 1
+        lhc['mbw.'+mm+'6l3.b1'].rbend_model = 'straight-body'
+        lhc['mbw.'+mm+'6l3.b1'].rbend_compensate_sagitta = False
+        lhc['mbw.'+mm+'6l3.b1'].angle = lhc.ref['abw.'+mm+'6l3']
+        lhc['mbw.'+mm+'6l3.b1'].rbend_angle_diff = lhc.ref['adiff.bw.'+mm+'6l3']
+        lhc['mbw.'+mm+'6l3.b1'].k0 = pol * lhc.ref['kd34.lr3']
+        lhc['mbw.'+mm+'6l3.b1'].rbend_shift = lhc.ref['shift.bw.'+mm+'6l3']
+
+        lhc['mbw.'+mm+'6l3.b2'].rbend_model = 'straight-body'
+        lhc['mbw.'+mm+'6l3.b2'].rbend_compensate_sagitta = False
+        lhc['mbw.'+mm+'6l3.b2'].angle = lhc.ref['abw.'+mm+'6l3']
+        lhc['mbw.'+mm+'6l3.b2'].rbend_angle_diff = -lhc.ref['adiff.bw.'+mm+'6l3']
+        lhc['mbw.'+mm+'6l3.b2'].k0 = pol * lhc.ref['kd34.lr3']
+        lhc['mbw.'+mm+'6l3.b2'].rbend_shift = lhc.ref['shift.bw.'+mm+'6l3']
