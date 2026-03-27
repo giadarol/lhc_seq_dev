@@ -58,6 +58,123 @@ for nn in name_magnets_right:
     lhc[nn].rbend_shift = (lhc[nn]._x0_in - tw0['x', nn] + lhc['sep_ir3']/2
                            - lhc['sep_d34.lr3']/2)
 
+lhc['abw.a6r3'] = lhc['mbw.a6r3.b1'].angle
+lhc['abw.b6r3'] = lhc['mbw.b6r3.b1'].angle
+lhc['abw.c6r3'] = lhc['mbw.c6r3.b1'].angle
+lhc['abw.d6r3'] = lhc['mbw.d6r3.b1'].angle
+lhc['abw.e6r3'] = lhc['mbw.e6r3.b1'].angle
+lhc['abw.f6r3'] = lhc['mbw.f6r3.b1'].angle
+lhc['abw.a6l3'] = lhc['abw.a6r3']
+lhc['abw.b6l3'] = lhc['abw.b6r3']
+lhc['abw.c6l3'] = lhc['abw.c6r3']
+lhc['abw.d6l3'] = lhc['abw.d6r3']
+lhc['abw.e6l3'] = lhc['abw.e6r3']
+lhc['abw.f6l3'] = lhc['abw.f6r3']
+
+lhc['adiff.bw.a6r3'] = lhc['mbw.a6r3.b1'].rbend_angle_diff
+lhc['adiff.bw.b6r3'] = lhc['mbw.b6r3.b1'].rbend_angle_diff
+lhc['adiff.bw.c6r3'] = lhc['mbw.c6r3.b1'].rbend_angle_diff
+lhc['adiff.bw.d6r3'] = lhc['mbw.d6r3.b1'].rbend_angle_diff
+lhc['adiff.bw.e6r3'] = lhc['mbw.e6r3.b1'].rbend_angle_diff
+lhc['adiff.bw.f6r3'] = lhc['mbw.f6r3.b1'].rbend_angle_diff
+lhc['adiff.bw.a6l3'] = -lhc['adiff.bw.a6r3']
+lhc['adiff.bw.b6l3'] = -lhc['adiff.bw.b6r3']
+lhc['adiff.bw.c6l3'] = -lhc['adiff.bw.c6r3']
+lhc['adiff.bw.d6l3'] = -lhc['adiff.bw.d6r3']
+lhc['adiff.bw.e6l3'] = -lhc['adiff.bw.e6r3']
+lhc['adiff.bw.f6l3'] = -lhc['adiff.bw.f6r3']
+
+lhc['shift.bw.a6r3'] = lhc['mbw.a6r3.b1'].rbend_shift
+lhc['shift.bw.b6r3'] = lhc['mbw.b6r3.b1'].rbend_shift
+lhc['shift.bw.c6r3'] = lhc['mbw.c6r3.b1'].rbend_shift
+lhc['shift.bw.d6r3'] = lhc['mbw.d6r3.b1'].rbend_shift
+lhc['shift.bw.e6r3'] = lhc['mbw.e6r3.b1'].rbend_shift
+lhc['shift.bw.f6r3'] = lhc['mbw.f6r3.b1'].rbend_shift
+lhc['shift.bw.a6l3'] = lhc['shift.bw.a6r3']
+lhc['shift.bw.b6l3'] = lhc['shift.bw.b6r3']
+lhc['shift.bw.c6l3'] = lhc['shift.bw.c6r3']
+lhc['shift.bw.d6l3'] = lhc['shift.bw.d6r3']
+lhc['shift.bw.e6l3'] = lhc['shift.bw.e6r3']
+lhc['shift.bw.f6l3'] = lhc['shift.bw.f6r3']
+
+lhc['afd.ipside.bw.a6r3'] = lhc['mbw.a6r3.b1'].edge_entry_angle_fdown
+lhc['afd.ipside.bw.b6r3'] = lhc['mbw.b6r3.b1'].edge_entry_angle_fdown
+lhc['afd.ipside.bw.c6r3'] = lhc['mbw.c6r3.b1'].edge_entry_angle_fdown
+lhc['afd.ipside.bw.d6r3'] = lhc['mbw.d6r3.b1'].edge_entry_angle_fdown
+lhc['afd.ipside.bw.e6r3'] = lhc['mbw.e6r3.b1'].edge_entry_angle_fdown
+lhc['afd.ipside.bw.f6r3'] = lhc['mbw.f6r3.b1'].edge_entry_angle_fdown
+lhc['afd.ipside.bw.a6l3'] = lhc['afd.ipside.bw.a6r3']
+lhc['afd.ipside.bw.b6l3'] = lhc['afd.ipside.bw.b6r3']
+lhc['afd.ipside.bw.c6l3'] = lhc['afd.ipside.bw.c6r3']
+lhc['afd.ipside.bw.d6l3'] = lhc['afd.ipside.bw.d6r3']
+lhc['afd.ipside.bw.e6l3'] = lhc['afd.ipside.bw.e6r3']
+lhc['afd.ipside.bw.f6l3'] = lhc['afd.ipside.bw.f6r3']
+
+lhc['afd.arcside.bw.a6r3'] = lhc['mbw.a6r3.b1'].edge_exit_angle_fdown
+lhc['afd.arcside.bw.b6r3'] = lhc['mbw.b6r3.b1'].edge_exit_angle_fdown
+lhc['afd.arcside.bw.c6r3'] = lhc['mbw.c6r3.b1'].edge_exit_angle_fdown
+lhc['afd.arcside.bw.d6r3'] = lhc['mbw.d6r3.b1'].edge_exit_angle_fdown
+lhc['afd.arcside.bw.e6r3'] = lhc['mbw.e6r3.b1'].edge_exit_angle_fdown
+lhc['afd.arcside.bw.f6r3'] = lhc['mbw.f6r3.b1'].edge_exit_angle_fdown
+lhc['afd.arcside.bw.a6l3'] = lhc['afd.arcside.bw.a6r3']
+lhc['afd.arcside.bw.b6l3'] = lhc['afd.arcside.bw.b6r3']
+lhc['afd.arcside.bw.c6l3'] = lhc['afd.arcside.bw.c6r3']
+lhc['afd.arcside.bw.d6l3'] = lhc['afd.arcside.bw.d6r3']
+lhc['afd.arcside.bw.e6l3'] = lhc['afd.arcside.bw.e6r3']
+lhc['afd.arcside.bw.f6l3'] = lhc['afd.arcside.bw.f6r3']
+
+# Adapt magnets
+
+for mm in ['a', 'b', 'c', 'd', 'e', 'f']:
+    pol = -1 if mm in ['a', 'b', 'c'] else 1
+    lhc['mbw.'+mm+'6r3.b1'].rbend_model = 'straight-body'
+    lhc['mbw.'+mm+'6r3.b1'].rbend_compensate_sagitta = False
+    lhc['mbw.'+mm+'6r3.b1'].angle = lhc.ref['abw.'+mm+'6r3']
+    lhc['mbw.'+mm+'6r3.b1'].rbend_angle_diff = lhc.ref['adiff.bw.'+mm+'6r3']
+    lhc['mbw.'+mm+'6r3.b1'].k0 = pol * lhc.ref['kd34.lr3']
+    lhc['mbw.'+mm+'6r3.b1'].rbend_shift = lhc.ref['shift.bw.'+mm+'6r3']
+    lhc['mbw.'+mm+'6r3.b1'].edge_entry_angle_fdown = lhc.ref['afd.ipside.bw.'+mm+'6r3']
+    lhc['mbw.'+mm+'6r3.b1'].edge_exit_angle_fdown = lhc.ref['afd.arcside.bw.'+mm+'6r3']
+    lhc['mbw.'+mm+'6r3.b1'].edge_entry_model = 'linear'
+    lhc['mbw.'+mm+'6r3.b1'].edge_exit_model = 'linear'
+
+    lhc['mbw.'+mm+'6r3.b2'].rbend_model = 'straight-body'
+    lhc['mbw.'+mm+'6r3.b2'].rbend_compensate_sagitta = False
+    lhc['mbw.'+mm+'6r3.b2'].angle = lhc.ref['abw.'+mm+'6r3']
+    lhc['mbw.'+mm+'6r3.b2'].rbend_angle_diff = -lhc.ref['adiff.bw.'+mm+'6r3']
+    lhc['mbw.'+mm+'6r3.b2'].k0 = pol * lhc.ref['kd34.lr3']
+    lhc['mbw.'+mm+'6r3.b2'].rbend_shift = lhc.ref['shift.bw.'+mm+'6r3']
+    lhc['mbw.'+mm+'6r3.b2'].edge_entry_angle_fdown = lhc.ref['afd.arcside.bw.'+mm+'6r3']
+    lhc['mbw.'+mm+'6r3.b2'].edge_exit_angle_fdown = lhc.ref['afd.ipside.bw.'+mm+'6r3']
+    lhc['mbw.'+mm+'6r3.b2'].edge_entry_model = 'linear'
+    lhc['mbw.'+mm+'6r3.b2'].edge_exit_model = 'linear'
+
+for mm in ['a', 'b', 'c', 'd', 'e', 'f']:
+    pol = -1 if mm in ['a', 'b', 'c'] else 1
+    lhc['mbw.'+mm+'6l3.b1'].rbend_model = 'straight-body'
+    lhc['mbw.'+mm+'6l3.b1'].rbend_compensate_sagitta = False
+    lhc['mbw.'+mm+'6l3.b1'].angle = lhc.ref['abw.'+mm+'6l3']
+    lhc['mbw.'+mm+'6l3.b1'].rbend_angle_diff = lhc.ref['adiff.bw.'+mm+'6l3']
+    lhc['mbw.'+mm+'6l3.b1'].k0 = pol * lhc.ref['kd34.lr3']
+    lhc['mbw.'+mm+'6l3.b1'].rbend_shift = lhc.ref['shift.bw.'+mm+'6l3']
+    lhc['mbw.'+mm+'6l3.b1'].edge_entry_angle_fdown = lhc.ref['afd.arcside.bw.'+mm+'6l3']
+    lhc['mbw.'+mm+'6l3.b1'].edge_exit_angle_fdown = lhc.ref['afd.ipside.bw.'+mm+'6l3']
+    lhc['mbw.'+mm+'6l3.b1'].edge_entry_model = 'linear'
+    lhc['mbw.'+mm+'6l3.b1'].edge_exit_model = 'linear'
+
+    lhc['mbw.'+mm+'6l3.b2'].rbend_model = 'straight-body'
+    lhc['mbw.'+mm+'6l3.b2'].rbend_compensate_sagitta = False
+    lhc['mbw.'+mm+'6l3.b2'].angle = lhc.ref['abw.'+mm+'6l3']
+    lhc['mbw.'+mm+'6l3.b2'].rbend_angle_diff = -lhc.ref['adiff.bw.'+mm+'6l3']
+    lhc['mbw.'+mm+'6l3.b2'].k0 = pol * lhc.ref['kd34.lr3']
+    lhc['mbw.'+mm+'6l3.b2'].rbend_shift = lhc.ref['shift.bw.'+mm+'6l3']
+    lhc['mbw.'+mm+'6l3.b2'].edge_entry_angle_fdown = lhc.ref['afd.ipside.bw.'+mm+'6l3']
+    lhc['mbw.'+mm+'6l3.b2'].edge_exit_angle_fdown = lhc.ref['afd.arcside.bw.'+mm+'6l3']
+    lhc['mbw.'+mm+'6l3.b2'].edge_entry_model = 'linear'
+    lhc['mbw.'+mm+'6l3.b2'].edge_exit_model = 'linear'
+
+
+
 
 lhc.b1.cycle('ip6')
 lhc.b2.cycle('ip6')
