@@ -76,6 +76,9 @@ lhc['shift.mbrb.r4'] = lhc['mbrb.5r4.b1'].rbend_shift
 lhc['shift.mbrs.l4'] = lhc['shift.mbrs.r4']
 lhc['shift.mbrb.l4'] = lhc['shift.mbrb.r4']
 
+lhc['kd3.l4'] = lhc['kd3.r4']
+lhc['kd4.l4'] = lhc['kd4.r4']
+
 tt_vars = lhc.vars.get_table()
 
 tt_angles = tt_vars.rows[r'ad[34]\.[lr]4']
