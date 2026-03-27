@@ -124,8 +124,6 @@ for ip_name in ['ip5', 'ip2']:
         lhc['shift_d2.r1'] = np.abs(line[d2_name].rbend_shift)
         lhc['shift_d2.l1'] = np.abs(line[d2_name].rbend_shift)
 
-        config_rbend_ir15(lhc)
-
     elif ip_name == 'ip2':
         # Adapt variables
         lhc['ad1.r8'] = np.abs(line[d1_name].angle)
@@ -155,8 +153,6 @@ for ip_name in ['ip5', 'ip2']:
         lhc['shift_d2.r2'] = np.abs(line[d2_name].rbend_shift)
         lhc['shift_d2.l2'] = np.abs(line[d2_name].rbend_shift)
 
-        config_rbend_ir28(lhc)
-
 tt_vars = lhc.vars.get_table()
 
 tt_angle = tt_vars.rows['ad.*[lr][1,2,5,8]']
@@ -165,6 +161,28 @@ tt_shift = tt_vars.rows['shift_d2.*[lr][1,2,5,8]']
 
 tt_k0 = tt_vars.rows['kd.*[lr][1,2,5,8]']
 
+out_lines = []
+out_lines.append('! D1 and D2 angles [rad]')
+for nn in sorted(tt_angle.name):
+    out_lines.append(f'{nn} = {tt_angle['value', nn]:.10e};')
+
+out_lines.append('\n! D1 mid-separation [m]')
+for nn in sorted(tt_sep.name):
+    out_lines.append(f'{nn} = {tt_sep['value', nn]:.10e};')
+
+out_lines.append('\n! D2 shifts [m]')
+for nn in sorted(tt_shift.name):
+    out_lines.append(f'{nn} = {tt_shift['value', nn]:.10e};')
+
+out_lines.append('\n! D1 and D2 strengths [1/m]')
+for nn in sorted(tt_k0.name):
+    out_lines.append(f'{nn} = {tt_k0["value", nn]:.10e};')
+
+with open('rbend_config_ip1258.madx', 'w') as fid:
+    fid.write('\n'.join(out_lines))
+
+config_rbend_ir15(lhc)
+config_rbend_ir28(lhc)
 
 # Save here
 
