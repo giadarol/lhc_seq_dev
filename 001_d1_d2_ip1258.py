@@ -97,23 +97,23 @@ for ip_name in ['ip5', 'ip2']:
 
     if ip_name == 'ip5':
         # Adapt variables
-        lhc['ad1.r5'] = -orientation * line[d1_name].angle
-        lhc['ad1.l5'] = -orientation * line[d1_name].angle
-        lhc['ad2.r5'] = orientation * line[d2_name].angle
-        lhc['ad2.l5'] = orientation * line[d2_name].angle
-        lhc['ad1.r1'] = -orientation * line[d1_name].angle
-        lhc['ad1.l1'] = -orientation * line[d1_name].angle
-        lhc['ad2.r1'] = orientation * line[d2_name].angle
-        lhc['ad2.l1'] = orientation * line[d2_name].angle
+        lhc['ad1.r5'] = np.abs(line[d1_name].angle)
+        lhc['ad1.l5'] = np.abs(line[d1_name].angle)
+        lhc['ad2.r5'] = np.abs(line[d2_name].angle)
+        lhc['ad2.l5'] = np.abs(line[d2_name].angle)
+        lhc['ad1.r1'] = np.abs(line[d1_name].angle)
+        lhc['ad1.l1'] = np.abs(line[d1_name].angle)
+        lhc['ad2.r1'] = np.abs(line[d2_name].angle)
+        lhc['ad2.l1'] = np.abs(line[d2_name].angle)
 
-        lhc['kd1.r5'] = -orientation * line[d1_name].k0
-        lhc['kd1.l5'] = -orientation * line[d1_name].k0
-        lhc['kd2.r5'] = orientation * line[d2_name].k0
-        lhc['kd2.l5'] = orientation * line[d2_name].k0
-        lhc['kd1.r1'] = -orientation * line[d1_name].k0
-        lhc['kd1.l1'] = -orientation * line[d1_name].k0
-        lhc['kd2.r1'] = orientation * line[d2_name].k0
-        lhc['kd2.l1'] = orientation * line[d2_name].k0
+        lhc['kd1.r5'] = np.abs(line[d1_name].k0)
+        lhc['kd1.l5'] = np.abs(line[d1_name].k0)
+        lhc['kd2.r5'] = np.abs(line[d2_name].k0)
+        lhc['kd2.l5'] = np.abs(line[d2_name].k0)
+        lhc['kd1.r1'] = np.abs(line[d1_name].k0)
+        lhc['kd1.l1'] = np.abs(line[d1_name].k0)
+        lhc['kd2.r1'] = np.abs(line[d2_name].k0)
+        lhc['kd2.l1'] = np.abs(line[d2_name].k0)
 
         lhc['sep_mid_d1.r5'] = 2 * line[d1_name].rbend_shift
         lhc['sep_mid_d1.l5'] = 2 * line[d1_name].rbend_shift
