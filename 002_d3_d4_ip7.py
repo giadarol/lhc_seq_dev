@@ -77,35 +77,44 @@ lhc['adiff.bw.b6l7'] = -lhc['adiff.bw.b6r7']
 lhc['adiff.bw.c6l7'] = -lhc['adiff.bw.c6r7']
 lhc['adiff.bw.d6l7'] = -lhc['adiff.bw.d6r7']
 
-lhc['shift.bw.a6r7'] = lhc['mbw.a6r7.b1'].rbend_shift
-lhc['shift.bw.b6r7'] = lhc['mbw.b6r7.b1'].rbend_shift
-lhc['shift.bw.c6r7'] = lhc['mbw.c6r7.b1'].rbend_shift
-lhc['shift.bw.d6r7'] = lhc['mbw.d6r7.b1'].rbend_shift
+lhc['shift.bw.a6r7'] = -lhc['mbw.a6r7.b1'].rbend_shift
+lhc['shift.bw.b6r7'] = -lhc['mbw.b6r7.b1'].rbend_shift
+lhc['shift.bw.c6r7'] = -lhc['mbw.c6r7.b1'].rbend_shift
+lhc['shift.bw.d6r7'] = -lhc['mbw.d6r7.b1'].rbend_shift
 lhc['shift.bw.a6l7'] = lhc['shift.bw.a6r7']
 lhc['shift.bw.b6l7'] = lhc['shift.bw.b6r7']
 lhc['shift.bw.c6l7'] = lhc['shift.bw.c6r7']
 lhc['shift.bw.d6l7'] = lhc['shift.bw.d6r7']
 
-lhc['afd.ipside.bw.a6r7'] = lhc['mbw.a6r7.b1'].edge_entry_angle_fdown
-lhc['afd.ipside.bw.b6r7'] = lhc['mbw.b6r7.b1'].edge_entry_angle_fdown
-lhc['afd.ipside.bw.c6r7'] = lhc['mbw.c6r7.b1'].edge_entry_angle_fdown
-lhc['afd.ipside.bw.d6r7'] = lhc['mbw.d6r7.b1'].edge_entry_angle_fdown
-lhc['afd.ipside.bw.a6l7'] = lhc['afd.ipside.bw.a6r7']
-lhc['afd.ipside.bw.b6l7'] = lhc['afd.ipside.bw.b6r7']
-lhc['afd.ipside.bw.c6l7'] = lhc['afd.ipside.bw.c6r7']
-lhc['afd.ipside.bw.d6l7'] = lhc['afd.ipside.bw.d6r7']
-
-lhc['afd.arcside.bw.a6r7'] = lhc['mbw.a6r7.b1'].edge_exit_angle_fdown
-lhc['afd.arcside.bw.b6r7'] = lhc['mbw.b6r7.b1'].edge_exit_angle_fdown
-lhc['afd.arcside.bw.c6r7'] = lhc['mbw.c6r7.b1'].edge_exit_angle_fdown
-lhc['afd.arcside.bw.d6r7'] = lhc['mbw.d6r7.b1'].edge_exit_angle_fdown
-lhc['afd.arcside.bw.a6l7'] = lhc['afd.arcside.bw.a6r7']
-lhc['afd.arcside.bw.b6l7'] = lhc['afd.arcside.bw.b6r7']
-lhc['afd.arcside.bw.c6l7'] = lhc['afd.arcside.bw.c6r7']
-lhc['afd.arcside.bw.d6l7'] = lhc['afd.arcside.bw.d6r7']
-
 # Adapt magnets
 config_rbend_ir7(lhc)
+
+tt_vars = lhc.vars.get_table()
+
+tt_angles = tt_vars.rows[r'abw\.[a-d]6[lr]7']
+tt_diff_angles = tt_vars.rows[r'adiff\.bw\.[a-d]6[lr]7']
+tt_shifts = tt_vars.rows[r'shift\.bw\.[a-d]6[lr]7']
+tt_k0 = tt_vars.rows[r'kd34\.lr7']
+
+out_lines = []
+out_lines.append('! Angles for RBends in IR7')
+for nn in sorted(tt_angles.name):
+    out_lines.append(f'{nn} = {tt_angles["value", nn]:.10e};')
+out_lines.append('')
+out_lines.append('! In-out angle differences for RBends in IR7')
+for nn in sorted(tt_diff_angles.name):
+    out_lines.append(f'{nn} = {tt_diff_angles["value", nn]:.10e};')
+out_lines.append('')
+out_lines.append('! Shifts for RBends in IR7')
+for nn in sorted(tt_shifts.name):
+    out_lines.append(f'{nn} = {tt_shifts["value", nn]:.10e};')
+out_lines.append('')
+out_lines.append('! k0 for RBends in IR7')
+for nn in sorted(tt_k0.name):
+    out_lines.append(f'{nn} = {tt_k0["value", nn]:.10e};')
+
+with open('rbend_config_ip7.madx', 'w') as fid:
+    fid.write('\n'.join(out_lines))
 
 
 lhc.b1.cycle('ip6')
