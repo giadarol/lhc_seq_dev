@@ -18,7 +18,7 @@ def config_rbend_ir15(lhc):
     lhc['mbxf.4r1/b1'].angle = -lhc.ref['ad1.r1']
     lhc['mbxf.4r1/b1'].rbend_angle_diff = -lhc.ref['ad1.r1']
     lhc['mbxf.4r1/b1'].k0 = -lhc.ref['kd1.r1']
-    lhc['mbxf.4r1/b1'].rbend_shift = lhc.ref['sep_mid_d1.r1'] / 2
+    lhc['mbxf.4r1/b1'].rbend_shift = -lhc.ref['sep_mid_d1.r1'] / 2
     lhc['mbxf.4r1/b1'].edge_entry_angle_fdown = 0
     lhc['mbxf.4r1/b1'].edge_exit_angle_fdown = -lhc.ref['ad1.r1']
     lhc['mbxf.4r1/b1'].edge_entry_model = 'linear'
@@ -40,7 +40,7 @@ def config_rbend_ir15(lhc):
     lhc['mbxf.4l1/b1'].angle = lhc.ref['ad1.l1']
     lhc['mbxf.4l1/b1'].rbend_angle_diff = -lhc.ref['ad1.l1']
     lhc['mbxf.4l1/b1'].k0 = lhc.ref['kd1.l1']
-    lhc['mbxf.4l1/b1'].rbend_shift = -lhc.ref['sep_mid_d1.l1'] / 2
+    lhc['mbxf.4l1/b1'].rbend_shift = lhc.ref['sep_mid_d1.l1'] / 2
     lhc['mbxf.4l1/b1'].edge_entry_angle_fdown = lhc.ref['ad1.l1']
     lhc['mbxf.4l1/b1'].edge_exit_angle_fdown = 0
     lhc['mbxf.4l1/b1'].edge_entry_model = 'linear'
@@ -62,7 +62,7 @@ def config_rbend_ir15(lhc):
     lhc['mbxf.4r1/b2'].angle = -lhc.ref['ad1.r1']
     lhc['mbxf.4r1/b2'].rbend_angle_diff = lhc.ref['ad1.r1']
     lhc['mbxf.4r1/b2'].k0 = -lhc.ref['kd1.r1']
-    lhc['mbxf.4r1/b2'].rbend_shift = lhc.ref['sep_mid_d1.r1'] / 2
+    lhc['mbxf.4r1/b2'].rbend_shift = -lhc.ref['sep_mid_d1.r1'] / 2
     lhc['mbxf.4r1/b2'].edge_entry_angle_fdown = lhc.ref['ad1.r1']
     lhc['mbxf.4r1/b2'].edge_exit_angle_fdown = 0
     lhc['mbxf.4r1/b2'].edge_entry_model = 'linear'
@@ -84,7 +84,7 @@ def config_rbend_ir15(lhc):
     lhc['mbxf.4l1/b2'].angle = lhc.ref['ad1.l1']
     lhc['mbxf.4l1/b2'].rbend_angle_diff = lhc.ref['ad1.l1']
     lhc['mbxf.4l1/b2'].k0 = lhc.ref['kd1.l1']
-    lhc['mbxf.4l1/b2'].rbend_shift = -lhc.ref['sep_mid_d1.l1'] / 2
+    lhc['mbxf.4l1/b2'].rbend_shift = lhc.ref['sep_mid_d1.l1'] / 2
     lhc['mbxf.4l1/b2'].edge_entry_angle_fdown = 0
     lhc['mbxf.4l1/b2'].edge_exit_angle_fdown = lhc.ref['ad1.l1']
 
