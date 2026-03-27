@@ -89,12 +89,17 @@ for nn in sorted(tt_angles.name):
 out_lines.append('\n! IR4 RBend shifts')
 for nn in sorted(tt_shifts.name):
     out_lines.append(f'{nn} = {tt_shifts["value", nn]:.10e};')
-out_lines.append('\n! IR4 RBend k0')
-for nn in sorted(tt_k0.name):
-    out_lines.append(f'{nn} = {tt_k0["value", nn]:.10e};')
-
 with open('rbend_config_ip4.madx', 'w') as fid:
     fid.write('\n'.join(out_lines))
+
+out_lines = []
+out_lines.append('! IR4 RBend k0')
+for nn in sorted(tt_k0.name):
+    out_lines.append(f'{nn} = {tt_k0["value", nn]:.10e};')
+with open('rbend_strengths_ip4.madx', 'w') as fid:
+    fid.write('\n'.join(out_lines))
+
+
 
 # Adapt magnets
 config_rbend_ir4(lhc)

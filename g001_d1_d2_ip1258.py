@@ -174,11 +174,15 @@ out_lines.append('\n! D2 shifts [m]')
 for nn in sorted(tt_shift.name):
     out_lines.append(f'{nn} = {tt_shift['value', nn]:.10e};')
 
-out_lines.append('\n! D1 and D2 strengths [1/m]')
+with open('rbend_config_ip1258.madx', 'w') as fid:
+    fid.write('\n'.join(out_lines))
+
+out_lines = []
+out_lines.append('! D1 and D2 strengths [1/m]')
 for nn in sorted(tt_k0.name):
     out_lines.append(f'{nn} = {tt_k0["value", nn]:.10e};')
 
-with open('rbend_config_ip1258.madx', 'w') as fid:
+with open('rbend_strengths_ip1258.madx', 'w') as fid:
     fid.write('\n'.join(out_lines))
 
 config_rbend_ir15(lhc)

@@ -108,14 +108,17 @@ out_lines.append('')
 out_lines.append('! Shifts for RBends in IR7')
 for nn in sorted(tt_shifts.name):
     out_lines.append(f'{nn} = {tt_shifts["value", nn]:.10e};')
-out_lines.append('')
-out_lines.append('! k0 for RBends in IR7')
-for nn in sorted(tt_k0.name):
-    out_lines.append(f'{nn} = {tt_k0["value", nn]:.10e};')
 
 with open('rbend_config_ip7.madx', 'w') as fid:
     fid.write('\n'.join(out_lines))
 
+out_lines = []
+out_lines.append('! k0 for RBends in IR7')
+for nn in sorted(tt_k0.name):
+    out_lines.append(f'{nn} = {tt_k0["value", nn]:.10e};')
+
+with open('rbend_strengths_ip7.madx', 'w') as fid:
+    fid.write('\n'.join(out_lines))
 
 lhc.b1.cycle('ip6')
 lhc.b2.cycle('ip6')
